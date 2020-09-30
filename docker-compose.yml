@@ -17,21 +17,21 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
 
-  # db_isolated:
-  #   build:
-  #     context: .
-  #     target: dellstore_isolated
-  #   restart: always
-  #   ports:
-  #     - 3456:5432
-  #   environment:
-  #     POSTGRES_DB: ${ISOLATED_ENV_DB_NAME}
-  #     POSTGRES_USER: ${ISOLATED_ENV_DB_USER}
-  #     POSTGRES_PASSWORD_FILE: /run/secrets/db_isolated_password
-  #   secrets:
-  #     - db_isolated_password
-  #   volumes:
-  #     - db_isolated_data:/var/lib/postgresql/data
+  db_isolated:
+    build:
+      context: .
+      target: dellstore_isolated
+    restart: always
+    ports:
+      - 3456:5432
+    environment:
+      POSTGRES_DB: ${ISOLATED_ENV_DB_NAME}
+      POSTGRES_USER: ${ISOLATED_ENV_DB_USER}
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_isolated_password
+    secrets:
+      - db_isolated_password
+    volumes:
+      - db_isolated_data:/var/lib/postgresql/data
 
   backend:
     depends_on:
