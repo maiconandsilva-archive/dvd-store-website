@@ -13,5 +13,5 @@ Esse projeto tem o intuito de demonstrar a modelagem de um banco de dados anonim
 
 ### Sprint 2
 
-- [] Inicio da Modelagem do banco
-- [] Inicio da Anonimizacao, desassociar os dados das vendas com os dados do cliente
+- [ ] Inicio da Modelagem do banco
+- [ ] Inicio da Anonimizacao, desassociar os dados das vendas com os dados do cliente
