@@ -9,4 +9,7 @@ def test():
     return f'<h1>EMAIL: {customer.email} GENERO: {customer.gender}</h1>'
 
 if __name__ == '__main__':
+    from debugger import initialize_flask_server_debugger_if_needed
+    
+    initialize_flask_server_debugger_if_needed()
     app.run(host='0.0.0.0', port=5000)
