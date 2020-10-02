@@ -36,7 +36,7 @@ services:
   backend:
     depends_on:
       - db
-      # - db_isolated
+      - db_isolated
     build:
       context: .
       target: backend
@@ -45,6 +45,7 @@ services:
     restart: always
     environment:
       DATABASE_URI: ${DATABASE_URI}
+      ISOLATED_DATABASE_URI: ${ISOLATED_DATABASE_URI}
       APPSETTINGS: ${APPSETTINGS}
       FLASK_ENV: ${ENV}
     volumes:
