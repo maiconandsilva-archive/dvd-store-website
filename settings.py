@@ -9,3 +9,4 @@ class Settings:
         'db_isolated': os.environ['ISOLATED_DATABASE_URI']
     }
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_ECHO = True

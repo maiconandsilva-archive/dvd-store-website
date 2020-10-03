@@ -26,4 +26,4 @@ RUN useradd appuser && chown -R appuser /app
 USER appuser
 
 ENTRYPOINT [ "python" ]
-CMD [ "./run.py" ]
+CMD [ "./app.py" ]

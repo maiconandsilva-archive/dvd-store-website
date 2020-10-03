@@ -1,5 +1,14 @@
 from app import db
 
+customerhistory = db.Table('cust_hist',
+    db.Column('customerid', db.Integer,
+        db.ForeignKey('customers.customerid'), nullable=False),
+    db.Column('orderid', db.Integer,
+        db.ForeignKey('orders.orderid'), nullable=False),
+    db.Column('prod_id', db.Integer,
+        db.ForeignKey('products.prod_id'), nullable=False)
+)
+
 class Customers(db.Model):
     __tablename__ = 'customers'
 
@@ -23,34 +32,34 @@ class Customers(db.Model):
     age = db.Column(db.Integer)
     income = db.Column(db.Integer)
     gender = db.Column(db.String(50))
-
-class CustomerHistory(db.Model):
-    __tablename__ = 'cust_hist'
-    __table_args__ = (
-        db.PrimaryKeyConstraint('customerid', 'orderid', 'prod_id'),
-    )
-
-    customerid = db.Column(
-        db.Integer, db.ForeignKey('cust_hist.customerid'), nullable=False)
-    orderid = db.Column(db.Integer, nullable=False)
-    prod_id = db.Column(db.Integer, nullable=False)
+    shopping_history = db.relationship('Orders', secondary='cust_hist')
+    products_bought = db.relationship('Products', secondary='cust_hist')
 
 class Orders(db.Model):
+    """Tabela de pedidos"""
+
     __tablename__ = 'orders'
 
     orderid = db.Column(db.Integer, primary_key=True)
     orderdate = db.Column(db.DateTime, nullable=False)
-    customerid = db.Column(db.Integer, db.ForeignKey('cust_hist.customerid'))
+    customerid = db.Column(db.Integer,
+        db.ForeignKey('customers.customerid'), nullable=True)
     netamount = db.Column(db.Numeric(precision=12, scale=2), nullable=False)
     tax = db.Column(db.Numeric(precision=12, scale=2), nullable=False)
     totalamount  = db.Column(db.Numeric(precision=12, scale=2), nullable=False)
+    customer = db.relationship('Customers')
 
 class OrderLines(db.Model):
+    """Tabela com os produtos por pedido"""
+
     __tablename__ = 'orderlines'
 
-    orderlineid = db.Column(db.Integer, primary_key=True)
-    orderid = db.Column(
-        db.Integer, db.ForeignKey('orders.orderid'), nullable=False)
-    prod_id = db.Column(db.Integer, nullable=False)
+    orderlineid = db.Column(db.Integer, nullable=False)
+    orderid = db.Column(db.Integer,
+        db.ForeignKey('orders.orderid'), primary_key=True)
+    prod_id = db.Column(db.Integer,
+        db.ForeignKey('products.prod_id'), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     orderdate = db.Column(db.DateTime, nullable=False)
+    product = db.relationship('Products')
+    orders = db.relationship('Orders')
