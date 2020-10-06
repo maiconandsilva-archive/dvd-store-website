@@ -1,5 +1,5 @@
 
-from app import db
+from server import db
 
 class Categories(db.Model):
     __tablename__ = 'categories'
