@@ -56,17 +56,17 @@ divididas em sprints como a ferramenta auxilia.
 ### Sprint 1
 
 - [x] Estudo sobre principais ferramentas SGDB para o projeto.
-- [x] Estudo e testes sobre principais liguagens de manipulação de dados.
+- [x] Estudo e testes sobre principais linguagens de manipulação de dados.
 - [x] Preparação do Ambiente em Docker
 
 ### Sprint 2
 - [x] Criação de Rotas iniciais para testes de manipulação de dados.
-- [x] Exclusao de um usuario com tecnica de anonimizacao 
-- [x] Inicio da Anonimizacao de dados ficticios de cliente da Dell Store
+- [x] Exclusão de um usuário com técnica de anonimização 
+- [x] Início da Anonimização de dados fictícios de cliente da Dell Store
 - [ ] Rota de listagem dos dados dos clientes pós anonimização.
 
 ### Sprint 3
-- [ ] Mascara para dados como o telefone
+- [ ] Máscara para dados como o telefone
 - [ ] Criptografia dos dados
 
 ## :anchor: Fontes
