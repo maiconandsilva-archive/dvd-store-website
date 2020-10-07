@@ -60,7 +60,7 @@ divididas em sprints como a ferramenta auxilia.
 - [x] Criação de Rotas iniciais para testes de manipulação de dados.
 - [x] Exclusão de um usuário com técnica de anonimização 
 - [x] Início da Anonimização de dados fictícios de cliente da Dell Store
-- [ ] Rota de listagem dos dados dos clientes pós anonimização.
+- [x] Rota de listagem dos dados dos clientes pós anonimização.
 
 ### Sprint 3
 - [ ] Máscara para dados como o telefone
