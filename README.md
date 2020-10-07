@@ -69,6 +69,7 @@ dividas em sprints como a ferramenta auxilia.
 - [ ] Mascara para dados como o telefone
 - [ ] Criptografia dos dados
 
-## Fontes
+## :anchor: Fontes
 --------
-- [Database Source](https://linux.dell.com/dvdstore/)
+- Exemplo da Empresa Dell de [Banco de dados ](https://linux.dell.com/dvdstore/) utilizado para anonimização.
+
