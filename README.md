@@ -1,15 +1,15 @@
 
 
 
-# :abcd: Projeto Seguranca da Informação 
+# :abcd: Projeto Segurança da Informação 
 [![Tested with TestCafe](https://img.shields.io/badge/python-v3.7-blue)](https://github.com/DevExpress/testcafe) ![Tested with TestCafe](https://img.shields.io/badge/docker%20build-automated-066da5)
 
-> Estudo de caso sobre Anonimização de Dados sensíveis dos clientes da Dell usando [PostgreSQL](https://www.postgresql.org/) 
+> Estudo de caso sobre Anonimização de Dados sensíveis dos clientes da Dell Store usando [PostgreSQL](https://www.postgresql.org/) 
 
-Esse projeto tem o intuito de demonstrar a aplicação de tecnicas para um banco de dados anonimizado ideal para uma empresa, seguindo as regras da Lei Geral de Proteção de Dados, fazendo com seja possivel a exclusão dos dados sensíveis dos clientes sem a necessidade da exclusão de dados importantes para a empresa, como informações de vendas. Por meio de uma API que simule tal funcionamento.  
+Esse projeto tem o intuito de demonstrar a aplicação de técnicas para um banco de dados anonimizado ideal para uma empresa, seguindo as regras da Lei Geral de Proteção de Dados, fazendo com seja possível a exclusão dos dados sensíveis dos clientes sem a necessidade da exclusão de dados importantes para a empresa, como informações de vendas. Por meio de uma API que simule tal funcionamento.  
 
 
-## :cd: Dependencias
+## :cd: Dependências
 
 Esta versão requer o Docker e Docker-Compose. Se você está utilizando o Windows [clique aqui](https://docs.docker.com/docker-for-windows/install/).
 
@@ -51,7 +51,7 @@ Consulte o arquivo [LICENSE](LICENSE) para obter os direitos e limitações da l
 
 ## :gear: Processo de Desenvolvimento
 Como framework de desenvolvimento dessa aplicação foi aplicada o Scrum - Metodologia Ágil de Desenvolvimento de softwares, e as entregas desse projeto foram
-dividas em sprints como a ferramenta auxilia.
+divididas em sprints como a ferramenta auxilia.
 
 ### Sprint 1
 
@@ -62,7 +62,7 @@ dividas em sprints como a ferramenta auxilia.
 ### Sprint 2
 - [x] Criação de Rotas iniciais para testes de manipulação de dados.
 - [x] Exclusao de um usuario com tecnica de anonimizacao 
-- [x] Inicio da Anonimizacao de dados ficticios de cliente da Dell
+- [x] Inicio da Anonimizacao de dados ficticios de cliente da Dell Store
 - [ ] Rota de listagem dos dados dos clientes pós anonimização.
 
 ### Sprint 3
@@ -70,5 +70,5 @@ dividas em sprints como a ferramenta auxilia.
 - [ ] Criptografia dos dados
 
 ## :anchor: Fontes
-- Exemplo da Empresa Dell de [Banco de dados ](https://linux.dell.com/dvdstore/) utilizado para anonimização.
+- Exemplo da Empresa Dell Store de [Banco de dados ](https://linux.dell.com/dvdstore/) utilizado para anonimização.
 
