@@ -70,6 +70,5 @@ dividas em sprints como a ferramenta auxilia.
 - [ ] Criptografia dos dados
 
 ## :anchor: Fontes
---------
 - Exemplo da Empresa Dell de [Banco de dados ](https://linux.dell.com/dvdstore/) utilizado para anonimização.
 
