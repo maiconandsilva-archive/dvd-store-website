@@ -1,6 +1,3 @@
-
-
-
 # :abcd: Projeto Segurança da Informação 
 [![Tested with TestCafe](https://img.shields.io/badge/python-v3.7-blue)](https://github.com/DevExpress/testcafe) ![Tested with TestCafe](https://img.shields.io/badge/docker%20build-automated-066da5)
 
