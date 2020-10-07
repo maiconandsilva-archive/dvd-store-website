@@ -1,10 +1,10 @@
 
 
 
-# :abcd: Projeto Seguranca da Informacao 
+# :abcd: Projeto Seguranca da Informação 
 [![Tested with TestCafe](https://img.shields.io/badge/python-v3.7-blue)](https://github.com/DevExpress/testcafe) ![Tested with TestCafe](https://img.shields.io/badge/docker%20build-automated-066da5)
 
-> Estudo de caso sobre Anonimização de Dados sensiveis dos clientes da Dell usando [PostgreSQL](https://www.postgresql.org/) 
+> Estudo de caso sobre Anonimização de Dados sensíveis dos clientes da Dell usando [PostgreSQL](https://www.postgresql.org/) 
 
 Esse projeto tem o intuito de demonstrar a aplicação de tecnicas para um banco de dados anonimizado ideal para uma empresa, seguindo as regras da Lei Geral de Proteção de Dados, fazendo com seja possivel a exclusão dos dados sensíveis dos clientes sem a necessidade da exclusão de dados importantes para a empresa, como informações de vendas. Por meio de uma API que simule tal funcionamento.  
 
