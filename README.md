@@ -64,11 +64,12 @@ divididas em sprints como a ferramenta auxilia.
 
 ### Sprint 3
 - [ ] Máscara para dados como o telefone
-- [ ] Criptografia dos dados
+- [ ] Criptografia da senha do usuario
+- [ ] Rota de criar usuario
 
 ### Sprint 4
 
-- [ ] Criacao de rotas de criar e atualizar
+- [ ] Validacao dos campos do usuario
 - [ ] Autenticacao
 
 ### Sprint 5
