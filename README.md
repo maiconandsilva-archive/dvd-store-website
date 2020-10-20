@@ -66,6 +66,15 @@ divididas em sprints como a ferramenta auxilia.
 - [ ] Máscara para dados como o telefone
 - [ ] Criptografia dos dados
 
+### Sprint 4
+
+- [ ] Criacao de rotas de criar e atualizar
+- [ ] Autenticacao
+
+### Sprint 5
+
+- [ ] Telas de interacao do usuario
+
 ## :anchor: Fontes
 - Exemplo da Empresa Dell Store de [Banco de dados ](https://linux.dell.com/dvdstore/) utilizado para anonimização.
 
