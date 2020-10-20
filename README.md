@@ -43,7 +43,7 @@ Estamos muito felizes em ver contribuições em potencial, então não hesite. S
 
 ## :lock: Licença
 
-Consulte o arquivo [LICENSE](LICENSE) para obter os direitos e limitações da licença (MIT).
+Consulte o arquivo [LICENSE](LICENSE) para obter os direitos e limitações da licença (FATEC).
 
 
 ## :gear: Processo de Desenvolvimento
@@ -66,7 +66,7 @@ divididas em sprints como a ferramenta auxilia.
 - [ ] Máscara para dados como o telefone
 - [ ] Criptografia da senha do usuário
 - [ ] Rota de criar usuário
-
+- [ ] BurnDown / Velocity Chart
 ### Sprint 4
 
 - [ ] Validação dos campos do usuário
