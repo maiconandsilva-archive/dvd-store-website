@@ -64,17 +64,17 @@ divididas em sprints como a ferramenta auxilia.
 
 ### Sprint 3
 - [ ] Máscara para dados como o telefone
-- [ ] Criptografia da senha do usuario
-- [ ] Rota de criar usuario
+- [ ] Criptografia da senha do usuário
+- [ ] Rota de criar usuário
 
 ### Sprint 4
 
-- [ ] Validacao dos campos do usuario
-- [ ] Autenticacao
+- [ ] Validação dos campos do usuário
+- [ ] Autenticação
 
 ### Sprint 5
 
-- [ ] Telas de interacao do usuario
+- [ ] Telas de interação do usuário
 
 ## :anchor: Fontes
 - Exemplo da Empresa Dell Store de [Banco de dados ](https://linux.dell.com/dvdstore/) utilizado para anonimização.
