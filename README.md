@@ -64,18 +64,19 @@ divididas em sprints, e para controle dessas, foram utilizados ferramentas como 
 - [x] Rota de listagem dos dados dos clientes pós anonimização.
 
 ### Sprint 3
-- [ ] Máscara para dados como o telefone
 - [x] Criptografia da senha do usuário
 - [x] Rota de criar usuário
 - [x] Botão para ativar rota de anonimização
 - [x] BurnDown / Velocity Chart
-### Sprint 4
 
+### Sprint 4
+- [ ] Máscara para o e-mail
+- [ ] Máscara para o Cartão de crédito
+- [ ] Máscara para dados como o telefone
 - [ ] Validação dos campos do usuário
-- [ ] Autenticação
 
 ### Sprint 5
-
+- [ ] Autenticação
 - [ ] Telas de interação do usuário
 
 ## :anchor: Fontes
