@@ -48,7 +48,7 @@ Consulte o arquivo [LICENSE](LICENSE) para obter os direitos e limitações da l
 
 ## :gear: Processo de Desenvolvimento
 Como framework de desenvolvimento dessa aplicação foi aplicada o Scrum - Metodologia Ágil de Desenvolvimento de softwares, e as entregas desse projeto foram
-divididas em sprints, e para controle dessas, foram utilizados ferramentas como o (Nosso Board no Trello)[https://trello.com/b/PyOFWkYC/si] e também nossa Planilha de (BurnDown)[https://docs.google.com/spreadsheets/d/1tDluxMUywgS5cD-ZQRGEMXdzJRsSD_wp/edit#gid=699714556] auxilia.
+divididas em sprints, e para controle dessas, foram utilizados ferramentas como o Nosso [Board no Trello](https://trello.com/b/PyOFWkYC/si) e também nossa Planilha de [BurnDown](https://docs.google.com/spreadsheets/d/1tDluxMUywgS5cD-ZQRGEMXdzJRsSD_wp/edit#gid=699714556).
 
 
 ### Sprint 1
