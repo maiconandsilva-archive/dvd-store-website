@@ -64,10 +64,10 @@ divididas em sprints como a ferramenta auxilia.
 
 ### Sprint 3
 - [ ] Máscara para dados como o telefone
-- [ ] Criptografia da senha do usuário
-- [ ] Rota de criar usuário
-- [ ] Botão para ativar rota de anonimização
-- [ ] BurnDown / Velocity Chart
+- [x] Criptografia da senha do usuário
+- [x] Rota de criar usuário
+- [x] Botão para ativar rota de anonimização
+- [x] BurnDown / Velocity Chart
 ### Sprint 4
 
 - [ ] Validação dos campos do usuário
