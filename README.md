@@ -66,6 +66,7 @@ divididas em sprints como a ferramenta auxilia.
 - [ ] Máscara para dados como o telefone
 - [ ] Criptografia da senha do usuário
 - [ ] Rota de criar usuário
+- [ ] Botão para ativar rota de anonimização
 - [ ] BurnDown / Velocity Chart
 ### Sprint 4
 
