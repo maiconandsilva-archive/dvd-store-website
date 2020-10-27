@@ -1,7 +1,7 @@
-from os import getenv
+from app import app
 
 def initialize_flask_server_debugger_if_needed():
-    if getenv('DEBUGGER') == 'True':
+    if app.config.get('DEBUG'):
         import multiprocessing
 
         if multiprocessing.current_process().pid > 1:

@@ -1,19 +1,22 @@
 FROM postgres as dellstore
 
 COPY sql/dellstore.sql /docker-entrypoint-initdb.d/dellstore.sql
-COPY sql/dellstore_MOD.sql /usr/src/dellstore_MOD.sql
+# COPY sql/dellstore_MOD.sql /usr/src/dellstore_MOD.sql
 
 FROM postgres as dellstore_isolated
 
-COPY sql/dellstore_isolated.sql /usr/src/dellstore_isolated.sql
+# COPY sql/dellstore_isolated.sql /usr/src/dellstore_isolated.sql
 
 FROM python:3.7 AS backend
+ARG PYTHON_DEBUG
+
+# Assign value 1 to variables in Debug Mode
 
 # Keeps Python from generating .pyc files in the container
-ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONDONTWRITEBYTECODE ${PYTHON_DEBUG}
 
 # Turns off buffering for easier container logging
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED ${PYTHON_DEBUG}
 
 WORKDIR /app
 
@@ -26,4 +29,4 @@ RUN useradd appuser && chown -R appuser /app
 USER appuser
 
 ENTRYPOINT [ "python" ]
-CMD [ "./app.py" ]
+CMD [ "./server.py" ]
