@@ -1,0 +1,10 @@
+{% macro render_field(field, class_, errcclass) %}
+
+  {% if not field.errors %}
+    {% set errclass = "" %}
+  {% endif %}
+  <div class="uk-margin">
+    {# <label for="{{ field.id}}">{{ field.label.text }}</label> #}
+    {{ field(class_=' '.join([class_, errcclass]), **kwargs) | safe }}
+  </div>
+{% endmacro %}

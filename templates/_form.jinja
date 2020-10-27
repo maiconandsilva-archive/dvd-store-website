@@ -1,0 +1,38 @@
+{% extends "_base.jinja" %}
+
+{% from "_formhelpers.jinja" import render_field %}
+
+{% block CONTENT %}
+
+{% with messages = get_flashed_messages() %}
+    {% for message in get_flashed_messages() %}
+        <div class="uk-alert-primary" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p>{{ message }}</p>
+        </div>
+    {% endfor %}
+{% endwith %}
+<div class="uk-grid-small uk-child-width-1-3@s uk-flex-center uk-text-center" uk-grid>
+<div>
+    <div class="uk-card uk-card-primary uk-card-body">
+    <h3 class="uk-card-title">{% block FORM_TITLE %}{% endblock %}</h3>
+        <form method="post">
+            {% block BEFORE_FORM_CONTENT %}{% endblock %}
+
+            {% block FORM_CONTENT %}
+                {% for field in form %}
+                    {{ render_field(field, "uk-input", "uk-form-danger",
+                        placeholder=field.label.text|title, value=field.data or "") }}
+                {% endfor %}
+            {% endblock %}
+
+            {% block AFTER_FORM_CONTENT %}
+                <button class="uk-button uk-button-primary" type="submit">
+                    {% block SUBMIT_BUTTON_NAME %}{% endblock %}
+                </button>
+            {% endblock %}
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}

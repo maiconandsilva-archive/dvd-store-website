@@ -1,0 +1,23 @@
+{% extends "_base.jinja" %}
+
+{% set title = "Account" %}
+{% block TITLE %}{{ title }}{% endblock %}
+
+{% block CONTENT %}
+<div>
+<div class="uk-grid-small uk-child-width-1-2@s uk-flex-center uk-text-center" uk-grid>
+    <div>
+        <div class="uk-card uk-card-primary uk-card-body">
+        <h3 class="uk-card-title">MY ACCOUNT</h3>
+
+        <table class="uk-table uk-table-middle uk-table-divider uk-text-left">
+        <tbody>
+            {% for field in form %}
+                <tr><td>{{ field.label.text|upper }}</td><td>{{ field.data }}</td></tr>           
+            {% endfor %}
+        <tbody>
+        </table>
+        <a href="{{ url_for('account-delete') }}"><button class="uk-button uk-button-danger">Delete</button></a>
+    </div>
+</div>
+{% endblock %}

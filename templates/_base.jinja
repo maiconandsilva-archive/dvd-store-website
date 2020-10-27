@@ -1,0 +1,17 @@
+<!doctype html>
+  <head>
+    {% block HEAD %}
+      <title>{% block TITLE %}{% endblock %}</title>
+      {% include "_head.jinja" %}
+      {% block LOCAL_HEAD %}{% endblock %}
+    {% endblock %}
+  </head>
+
+  <body class="">
+    {% block CONTENT %}{% endblock %}
+    {% block FOOTER_SCRIPTS %}
+      {% include "_foot.jinja" %}
+      {% block LOCAL_FOOTER_SCRIPTS %}{% endblock %}  
+    {% endblock %}
+  </body>
+</html>
