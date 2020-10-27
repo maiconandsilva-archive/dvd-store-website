@@ -43,12 +43,13 @@ Estamos muito felizes em ver contribuições em potencial, então não hesite. S
 
 ## :lock: Licença
 
-Consulte o arquivo [LICENSE](LICENSE) para obter os direitos e limitações da licença (MIT).
+Consulte o arquivo [LICENSE](LICENSE) para obter os direitos e limitações da licença (FATEC).
 
 
 ## :gear: Processo de Desenvolvimento
 Como framework de desenvolvimento dessa aplicação foi aplicada o Scrum - Metodologia Ágil de Desenvolvimento de softwares, e as entregas desse projeto foram
-divididas em sprints como a ferramenta auxilia.
+divididas em sprints, e para controle dessas, foram utilizados ferramentas como o Nosso [Board no Trello](https://trello.com/b/PyOFWkYC/si) e também nossa Planilha de [BurnDown](https://docs.google.com/spreadsheets/d/1tDluxMUywgS5cD-ZQRGEMXdzJRsSD_wp/edit#gid=699714556).
+
 
 ### Sprint 1
 
@@ -63,8 +64,20 @@ divididas em sprints como a ferramenta auxilia.
 - [x] Rota de listagem dos dados dos clientes pós anonimização.
 
 ### Sprint 3
+- [x] Criptografia da senha do usuário
+- [x] Rota de criar usuário
+- [x] Botão para ativar rota de anonimização
+- [x] BurnDown / Velocity Chart
+
+### Sprint 4
+- [ ] Máscara para o e-mail
+- [ ] Máscara para o Cartão de crédito
 - [ ] Máscara para dados como o telefone
-- [ ] Criptografia dos dados
+- [ ] Validação dos campos do usuário
+
+### Sprint 5
+- [ ] Autenticação
+- [ ] Telas de interação do usuário
 
 ## :anchor: Fontes
 - Exemplo da Empresa Dell Store de [Banco de dados ](https://linux.dell.com/dvdstore/) utilizado para anonimização.
