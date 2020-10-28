@@ -1,7 +1,7 @@
 FROM postgres as dellstore
 
-COPY sql/dellstore.sql /docker-entrypoint-initdb.d/dellstore.sql
-# COPY sql/dellstore_MOD.sql /usr/src/dellstore_MOD.sql
+ADD https://git.io/JT1ee /docker-entrypoint-initdb.d/dellstore.sql
+RUN chmod 744 /docker-entrypoint-initdb.d/dellstore.sql
 
 FROM postgres as dellstore_isolated
 
