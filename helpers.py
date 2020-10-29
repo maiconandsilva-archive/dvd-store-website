@@ -1,10 +1,11 @@
 from flask import request, redirect, url_for, flash, session
-from functools import wraps
+from functools import partial, wraps
 
 from flask.globals import g
 
 from app import db
-from models import Customers
+
+import re
 
 
 def login_required(view):
@@ -30,7 +31,7 @@ def redirect_if_loggedin(route='account'):
 
 def commit_on_finish(f):
     """
-    Adiciona os objetos atraves da sintaxe 'yield [objeto]' e faz commit.
+    Adiciona aos objetos atraves da sintaxe 'yield [objeto]' e faz commit.
     """
     @wraps(f)
     def wrapper(self, *args, **kwargs):
@@ -63,3 +64,18 @@ def form_validated_or_page_with_errors(f):
         kwargs['form'] = form
         return f(self, *args, **kwargs)
     return wrapper
+
+class _Mask:
+    EMAIL = r'(?<=[a-z]{2})\w+(?=@)'
+    EMAIL_ANONYMIZATION = r'^\w+(?=@)'
+
+    def __call__(self, data, show_begin=0, show_end=0, /, *,
+            pattern=None, mask_char='*', n_mask_char=6):
+        if data is None:
+            return None
+        if pattern is None:
+            return data[:show_begin] + mask_char * n_mask_char \
+                    + data[len(data) - show_end:]
+        return re.sub(pattern, mask_char * n_mask_char, data)
+
+mask = _Mask()
