@@ -34,5 +34,3 @@ class Dev(Settings):
     TESTING = True
 
     SQLALCHEMY_ECHO = True
-
-    PYTHON_DEBUG_PORT = os.environ['PYTHON_DEBUG_PORT']
