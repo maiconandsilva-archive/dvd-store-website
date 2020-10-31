@@ -10,9 +10,10 @@ def assign_loggedin_customer():
     customerid = session.get('customerid')
     if customerid is not None:
         customer = Customers.query.get(customerid)
-        if customer is not None:
-            g.user = customer if customer.is_active else None
-
+        if customer is not None and customer.is_active:
+                g.user = customer
+        else:
+            session.clear()
 
 app.add_url_rule('/signin', view_func=Signin.as_view('signin'))
 app.add_url_rule('/signup', view_func=Signup.as_view('signup'))
