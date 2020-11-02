@@ -27,8 +27,8 @@ class AccountEdit(FormMethodView, RequiredLoginViewMixin):
         # TODO:
         return super().get()
 
-    @commit_on_finish
     @form_validated_or_page_with_errors
+    @commit_on_finish
     def post(self, form=None):
         customer = Customers.from_form(form)
         yield customer # deletes customer
@@ -96,8 +96,8 @@ class Signup(FormMethodView, RequiredLoggedoutViewMixin):
 
     FORM = SignupForm
 
-    @commit_on_finish
     @form_validated_or_page_with_errors
+    @commit_on_finish
     def post(self, form=None):
         # TODO: Verify if username doesn't exist already
         customer = Customers.from_form(form)
