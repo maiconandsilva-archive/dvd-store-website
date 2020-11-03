@@ -15,12 +15,12 @@ class SignupForm(ModelForm):
     class Meta:
         model = Customers
         only = [
-            'firstname', 'lastname',
+            'email', 'phone', 'firstname', 'lastname',
             'gender', 'age', 'income',
             'country', 'zip', 'city', 'state',
             'address1', 'address2',
             'creditcard', 'creditcardexpiration',
-            'phone', 'username', 'email', 'password',
+            'username', 'password',
         ]
 
 class UpdateAccountForm(SignupForm):

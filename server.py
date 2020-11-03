@@ -3,6 +3,8 @@ from app import app, db
 
 from views import *
 
+from helpers import mask
+
 
 @app.before_request
 def assign_loggedin_customer():
@@ -14,6 +16,13 @@ def assign_loggedin_customer():
                 g.user = customer
         else:
             session.clear()
+ 
+# TODO: for sprint-4. To be refactored
+@app.context_processor
+def utility_processor():
+    """Pass mask function to jinja"""
+    return dict(mask=mask)
+
 
 app.add_url_rule('/signin', view_func=Signin.as_view('signin'))
 app.add_url_rule('/signup', view_func=Signup.as_view('signup'))
