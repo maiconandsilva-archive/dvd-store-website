@@ -33,7 +33,7 @@ docker-compose up --build -d
 docker-compose up -d
 
 # URL de acesso 
-url: http://127.0.0.1:5000/tests
+url: http://127.0.0.1/signup
 ```
 
 ## :beers: Contribuições
@@ -67,17 +67,23 @@ divididas em sprints, e para controle dessas, foram utilizados ferramentas como 
 - [x] Criptografia da senha do usuário
 - [x] Rota de criar usuário
 - [x] Botão para ativar rota de anonimização
+- [x] Autenticação
+- [x] Telas de interação do usuário
 - [x] BurnDown / Velocity Chart
 
 ### Sprint 4
-- [ ] Máscara para o e-mail
-- [ ] Máscara para o Cartão de crédito
-- [ ] Máscara para dados como o telefone
-- [ ] Validação dos campos do usuário
+- [x] Aplicar máscaras ao cliente deletado no banco para campos o e-mail, cartão de crédito e telefone
+- [x] Aplicar máscaras para visualização de informações pessoais do cliente em sua conta
+- [x] Pseudonimização (transferir dados do cliente para outra tabela)
+- [x] Criptografar dados pessoais do cliente "pseudonimizado"
 
 ### Sprint 5
-- [ ] Autenticação
-- [ ] Telas de interação do usuário
+- [ ] Implementar estrutura para guardar chaves advindas da Pseudonimização do cliente
+- [ ] Implementar autorização para clientes com senhas antes não criptografadas
+- [ ] Validação dos campos do usuário
+
+### Sprint 6
+- [ ] Implementar tela de visualização de produtos
 
 ## :anchor: Fontes
 - Exemplo da Empresa Dell Store de [Banco de dados ](https://linux.dell.com/dvdstore/) utilizado para anonimização.
