@@ -1,6 +1,8 @@
 from datetime import datetime
 
 from flask.globals import request
+
+from helpers import mask
 from app import db
 
 import sqlalchemy_utils as su
@@ -33,22 +35,18 @@ class Customers(db.Model):
     city = db.Column(db.String(50), info={'anonymize': True})
     state = db.Column(db.String(50), info={'anonymize': True})
     zip = db.Column(db.Integer, info={'anonymize': True})
-    country = db.Column(su.CountryType, info={'anonymize': True})
+    country = db.Column(su.CountryType)
     region = db.Column(db.Integer)
     email = db.Column(su.EmailType(50))
-    phone = db.Column(su.PhoneNumberType(max_length=50),
-        info={'anonymize': True})
+    phone = db.Column(su.PhoneNumberType(max_length=50))
     creditcardtype = db.Column(db.Integer, info={'anonymize': True})
     creditcard = db.Column(db.String(50), info={'anonymize': True})
-    creditcardexpiration = db.Column(db.String(50),
-        info={'anonymize': True})
+    creditcardexpiration = db.Column(db.String(50), info={'anonymize': True})
     username = db.Column(db.String(50), info={'anonymize': True})
-    password = db.Column(su.PasswordType(schemes=['pbkdf2_sha512']),
-        info={'anonymize': True})
+    password = db.Column(su.PasswordType(schemes=['pbkdf2_sha512']))
     age = db.Column(db.Integer, info={'anonymize': True})
     income = db.Column(db.Integer, info={'anonymize': True})
-    gender = db.Column(su.ChoiceType(GENDERS,
-        impl=db.String(1)), info={'anonymize': True})
+    gender = db.Column(su.ChoiceType(GENDERS, impl=db.String(1)))
     _deleted_at = db.Column('deleted_at', db.DateTime)
     shopping_history = db.relationship('Orders', secondary='cust_hist')
 
@@ -65,9 +63,12 @@ class Customers(db.Model):
 
     def anonymized(self):
         """Anonimiza informacoes que identificam uma pessoa"""
-        # TODO: Change anonymization process to
-        # TODO: Atualizar forma de aplicar data
-        self._deleted = datetime.now()
+        self._deleted_at = datetime.now()
+        self.phone = self.phone and mask(self.phone.e164[1:], 5, 0)
+        self.email = self.email and \
+            mask(self.email, pattern=mask.EMAIL_ANONYMIZATION, n_mask_char=2)
+        self.password = None
+
         for column in self.__table__.columns:
             if column.info.get('anonymize'):
                 setattr(self, column.name, None)

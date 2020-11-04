@@ -33,7 +33,7 @@ docker-compose up --build -d
 docker-compose up -d
 
 # URL de acesso 
-url: http://127.0.0.1:5000
+url: http://127.0.0.1/signup
 ```
 
 ## :beers: Contribuições
@@ -72,15 +72,15 @@ divididas em sprints, e para controle dessas, foram utilizados ferramentas como 
 - [x] BurnDown / Velocity Chart
 
 ### Sprint 4
-- [ ] Aplicar máscaras ao cliente deletado no banco para campos o e-mail, cartão de crédito e telefone
-- [ ] Aplicar máscaras para visualização de informações pessoais do cliente em sua conta
-- [ ] Validação dos campos do usuário
-- [ ] Pseudonimização (transferir dados do cliente para outra tabela)
-- [ ] Criptografar dados pessoais do cliente "pseudonimizado"
-- [ ] Implementar autorização para clientes com senhas antes não criptografadas
+- [x] Aplicar máscaras ao cliente deletado no banco para campos o e-mail, cartão de crédito e telefone
+- [x] Aplicar máscaras para visualização de informações pessoais do cliente em sua conta
+- [x] Pseudonimização (transferir dados do cliente para outra tabela)
+- [x] Criptografar dados pessoais do cliente "pseudonimizado"
 
 ### Sprint 5
 - [ ] Implementar estrutura para guardar chaves advindas da Pseudonimização do cliente
+- [ ] Implementar autorização para clientes com senhas antes não criptografadas
+- [ ] Validação dos campos do usuário
 
 ### Sprint 6
 - [ ] Implementar tela de visualização de produtos

@@ -12,6 +12,7 @@ from helpers import (commit_on_finish, login_required,
 )
 from forms.account import SignupForm, SigninForm, UpdateAccountForm
 from models.customers import Customers
+from models.isolated import CustomerPersonalInfo
 from views.utils import (FormMethodView, MethodViewWrapper,
     RequiredLoggedoutViewMixin, RequiredLoginViewMixin,
 )
@@ -26,8 +27,8 @@ class AccountEdit(FormMethodView, RequiredLoginViewMixin):
         # TODO:
         return super().get()
 
-    @commit_on_finish
     @form_validated_or_page_with_errors
+    @commit_on_finish
     def post(self, form=None):
         customer = Customers.from_form(form)
         yield customer # deletes customer
@@ -48,16 +49,25 @@ class AccountView(MethodViewWrapper, RequiredLoginViewMixin):
 class AccountDelete(MethodViewWrapper, RequiredLoginViewMixin):
     """Rota para anonimizar Customer"""
 
-    @commit_on_finish
     def get(self):
         if g.user is None:
             flash('Customer not found', category='error')
             abort(404)
-
-        yield g.user.anonymized()
+        
+        user_personal_info = CustomerPersonalInfo.from_customer(g.user)
+        g.user.anonymized().save()
+        user_personal_info.save()
+        self.store_key_id(user_personal_info.customerid)
 
         flash("We're sorry to see you go :(")
         return redirect(url_for(Signout.ROUTE))
+    
+    def store_key_id(self, customerid):
+        """Store id;key on an isolated environment"""
+        # TODO: Change how to manage the keys
+        # something like KMS from Amazon
+        with open('isolated_db_keys.txt', 'a') as f:
+            f.write('%s;%s\n' % (customerid, session['cryptkey'].decode()))
     
 
 class Signin(FormMethodView, RequiredLoggedoutViewMixin):
@@ -86,8 +96,8 @@ class Signup(FormMethodView, RequiredLoggedoutViewMixin):
 
     FORM = SignupForm
 
-    @commit_on_finish
     @form_validated_or_page_with_errors
+    @commit_on_finish
     def post(self, form=None):
         # TODO: Verify if username doesn't exist already
         customer = Customers.from_form(form)

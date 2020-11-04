@@ -12,8 +12,17 @@
 
         <table class="uk-table uk-table-middle uk-table-divider uk-text-left">
         <tbody>
+        {# TODO: Refactor this uglyness. It works for now :) #}
             {% for field in form %}
-                <tr><td>{{ field.label.text|upper }}</td><td>{{ field.data }}</td></tr>           
+                {% if field.label.text == 'gender' %}
+                    <tr><td>{{ field.label.text|upper }}</td><td>{{ field.object_data.value or "" }}</td></tr>
+                {% elif field.label.text == 'email' %}
+                    <tr><td>{{ field.label.text|upper }}</td><td>{{ mask(field.data, pattern=mask.EMAIL) }}</td></tr>
+                {% elif field.label.text == 'phone' %}
+                    <tr><td>{{ field.label.text|upper }}</td><td>{{ mask(field.data.international, 4, 2) }}</td></tr>
+                {% else %}
+                    <tr><td>{{ field.label.text|upper }}</td><td>{{ field.data or "" }}</td></tr>
+                {% endif %}           
             {% endfor %}
         <tbody>
         </table>
