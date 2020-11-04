@@ -1,11 +1,11 @@
+# THIRD PARTY IMPORTS
 from flask import request, redirect, url_for, flash, session
-from functools import partial, wraps
-
 from flask.globals import g
-
-from app import db
-
+from functools import wraps
 import re
+
+# LOCAL IMPORTS
+import app
 
 
 def login_required(view):
@@ -42,9 +42,9 @@ def commit_on_finish(f):
 
         # Adiciona todos os objetos da funcao antes de fazer commit
         for model in innerwrapper():
-            db.session.add(model)
+            app.db.session.add(model)
 
-        db.session.commit()
+        app.db.session.commit()
         return value
     return wrapper
 

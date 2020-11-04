@@ -1,5 +1,8 @@
-from forms import ModelForm
-from models import Customers
+# THIRD PARTY IMPORTS
+
+# LOCAL IMPORTS
+from forms.base import ModelForm
+from models.customers import Customers
 
 
 class SigninForm(ModelForm):

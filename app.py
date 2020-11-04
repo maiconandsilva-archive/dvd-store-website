@@ -1,9 +1,11 @@
+# THIRD PARTY IMPORTS
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_sqlalchemy.model import Model
 from werkzeug.utils import import_string
-
 import os
+
+# LOCAL IMPORTS
+import models.base
 
 # Flask Settings
 
@@ -14,9 +16,4 @@ app.config.from_object(cfg)
 
 # SQLAlchemy settings 
 
-class BaseModel(Model):
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
-
-db = SQLAlchemy(app, model_class=BaseModel)
+db = SQLAlchemy(app, model_class=models.base.BaseModel)

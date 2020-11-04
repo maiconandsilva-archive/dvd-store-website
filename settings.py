@@ -1,4 +1,7 @@
+# THIRD PARTY IMPORTS
 import os
+
+# LOCAL IMPORTS
 
 
 class Settings:

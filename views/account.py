@@ -1,18 +1,18 @@
-from flask import Flask, redirect, abort
+# THIRD PARTY IMPORTS
+from flask import redirect, abort
 from flask.helpers import flash, url_for
-from flask.templating import render_template
-from flask.globals import g, session, request
-from flask.json import jsonify
-
+from flask.globals import g, session
 from sqlalchemy import orm
 
+# LOCAL IMPORTS
 from app import app, db
-from helpers import (commit_on_finish, login_required,
-    redirect_if_loggedin, form_validated_or_page_with_errors,
+from helpers import (
+    commit_on_finish,
+    form_validated_or_page_with_errors,
 )
 from forms.account import SignupForm, SigninForm, UpdateAccountForm
 from models.customers import Customers
-from models.isolated import CustomerPersonalInfo
+from models.isolated.customer_personal_info import CustomerPersonalInfo
 from views.utils import (FormMethodView, MethodViewWrapper,
     RequiredLoggedoutViewMixin, RequiredLoginViewMixin,
 )
@@ -53,7 +53,7 @@ class AccountDelete(MethodViewWrapper, RequiredLoginViewMixin):
         if g.user is None:
             flash('Customer not found', category='error')
             abort(404)
-        
+        # TODO: Check if customer active
         user_personal_info = CustomerPersonalInfo.from_customer(g.user)
         g.user.anonymized().save()
         user_personal_info.save()

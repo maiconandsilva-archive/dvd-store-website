@@ -1,27 +1,9 @@
+# THIRD PARTY IMPORTS
 from flask.globals import g
-from app import app, db
 
+# LOCAL IMPORTS
+from app import app
 from views import *
-
-from helpers import mask
-
-
-@app.before_request
-def assign_loggedin_customer():
-    g.user = None
-    customerid = session.get('customerid')
-    if customerid is not None:
-        customer = Customers.query.get(customerid)
-        if customer is not None and customer.is_active:
-                g.user = customer
-        else:
-            session.clear()
- 
-# TODO: for sprint-4. To be refactored
-@app.context_processor
-def utility_processor():
-    """Pass mask function to jinja"""
-    return dict(mask=mask)
 
 
 app.add_url_rule('/signin', view_func=Signin.as_view('signin'))

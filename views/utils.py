@@ -1,11 +1,9 @@
-from flask.globals import request
+# THIRD PARTY IMPORTS
 from flask.templating import render_template
 from flask.views import MethodView
-from functools import wraps
 
-# from views.account import AccountView
+# LOCAL IMPORTS
 from helpers import login_required, redirect_if_loggedin
-
 from app import app
 
 

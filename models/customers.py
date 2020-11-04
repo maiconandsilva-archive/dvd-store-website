@@ -1,11 +1,12 @@
-from datetime import datetime
-
+# THIRD PARTY IMPORTS
 from flask.globals import request
+from datetime import datetime
+import sqlalchemy_utils as su
 
+# LOCAL IMPORTS
 from helpers import mask
 from app import db
-
-import sqlalchemy_utils as su
+import models.products as mp
 
 
 customerhistory = db.Table('cust_hist',
@@ -88,7 +89,7 @@ class Orders(db.Model):
     tax = db.Column(db.Numeric(precision=12, scale=2), nullable=False)
     totalamount  = db.Column(db.Numeric(precision=12, scale=2), nullable=False)
     customer = db.relationship('Customers')
-    products = db.relationship('Products', secondary='cust_hist')
+    products = db.relationship(mp.Products, secondary='cust_hist')
 
 
 class OrderLines(db.Model):
@@ -103,5 +104,5 @@ class OrderLines(db.Model):
         db.ForeignKey('products.prod_id'), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     orderdate = db.Column(db.DateTime, nullable=False)
-    product = db.relationship('Products')
+    product = db.relationship(mp.Products)
     orders = db.relationship('Orders')

@@ -1,13 +1,16 @@
+# THIRD PARTY IMPORTS
 from flask.globals import session
 from sqlalchemy_utils.types.encrypted.encrypted_type import AesEngine, FernetEngine
 from sqlalchemy_utils import EncryptedType
 from cryptography.fernet import Fernet
 
+# LOCAL IMPORTS
 from app import db
 from models.customers import Customers
 
 
 def _get_customer_personal_info(model, ColumnType, engine, key):
+    """Generate CustomerPersonalInfo Model with Customers' anonymize columns"""
 
     AnonymizedColumnsMixin = type('AnonymizedColumnsMixin', (), {
         column.name: db.Column(ColumnType(column.type, key, engine))
@@ -17,8 +20,7 @@ def _get_customer_personal_info(model, ColumnType, engine, key):
 
     class CustomerPersonalInfo(AnonymizedColumnsMixin, db.Model):
         """
-        Class writes deleted customer's personal info encrypted
-        on the isolated database
+        Deleted customer's personal info encrypted on an isolated database
         """
         __bind_key__ = 'db_isolated'
         __tablename__ = 'customers_personal_info'
@@ -36,6 +38,8 @@ def _get_customer_personal_info(model, ColumnType, engine, key):
 
 
 def _get_key():
+    "Get current key from session or generate it randomly"
+    
     session['cryptkey'] = session.get('cryptkey', Fernet.generate_key())
     return session['cryptkey']
 

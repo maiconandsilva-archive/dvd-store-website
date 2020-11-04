@@ -1,11 +1,12 @@
-
 from app import db
+
 
 class Categories(db.Model):
     __tablename__ = 'categories'
 
     category = db.Column(db.Integer, primary_key=True)
     categoryname = db.Column(db.String(50), nullable=False)
+
 
 class Products(db.Model):
     __tablename__ = 'products'
@@ -22,6 +23,7 @@ class Products(db.Model):
     inventory = db.relationship('Inventory', uselist=False)
     reorder = db.relationship('Reorder', uselist=False)
 
+
 class Inventory(db.Model):
     __tablename__ = 'inventory'
 
@@ -29,6 +31,7 @@ class Inventory(db.Model):
         db.ForeignKey('products.prod_id'), primary_key=True)
     quan_in_stock = db.Column(db.Integer, nullable=False)
     sales = db.Column(db.Integer, nullable=False)
+
 
 class Reorder(db.Model):
     __tablename__ = 'reorder'
