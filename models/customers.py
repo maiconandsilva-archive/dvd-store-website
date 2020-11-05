@@ -27,7 +27,7 @@ class Customers(db.Model):
         (MALE, 'Male'),
         (FEMALE, 'Female'),
     ]
-    # TODO: Add unique constraint to columns
+    
     customerid = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String(50), info={'anonymize': True})
     lastname = db.Column(db.String(50), info={'anonymize': True})
@@ -38,8 +38,8 @@ class Customers(db.Model):
     zip = db.Column(db.Integer, info={'anonymize': True})
     country = db.Column(su.CountryType)
     region = db.Column(db.Integer)
-    email = db.Column(su.EmailType(50))
-    phone = db.Column(su.PhoneNumberType(max_length=50))
+    email = db.Column(su.EmailType(50), unique=True)
+    phone = db.Column(su.PhoneNumberType(max_length=50), unique=True)
     creditcardtype = db.Column(db.Integer, info={'anonymize': True})
     creditcard = db.Column(db.String(50), info={'anonymize': True})
     creditcardexpiration = db.Column(db.String(50), info={'anonymize': True})

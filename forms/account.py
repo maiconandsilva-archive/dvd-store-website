@@ -12,6 +12,7 @@ class SigninForm(ModelForm):
             'email',
             'password',
         ]
+        unique_validator = None
 
 
 class SignupForm(ModelForm):
