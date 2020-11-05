@@ -34,8 +34,11 @@
     {{ r_info_field(form.creditcardexpiration) }}
     <tbody>
 </table>
-<a href="{{ url_for('account-delete') }}"><button class="uk-button uk-button-danger">Delete</button></a>
 
+<form action="{{ url_for('account-delete') }}">
+    {{ form.csrf_token }}
+    <button class="uk-button uk-button-danger" type="submit">Delete</button>
+</form>
 
 </div>
 </div>

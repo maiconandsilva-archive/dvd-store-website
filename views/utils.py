@@ -23,8 +23,7 @@ class RequiredLoggedoutViewMixin(MethodView):
 class MethodViewWrapper(MethodView):
 
     def get(self, template=None, **kwargs):
-        return render_template(
-            template or self.TEMPLATE, **kwargs)
+        return render_template(template or self.TEMPLATE, **kwargs)
 
     @classmethod
     def as_view(cls, name, *class_args, **class_kwargs):
@@ -45,6 +44,7 @@ class FormMethodView(MethodViewWrapper):
     """View que implementa o metodo get com FORM padrao"""
 
     def FORM(self):
+        "Implementar como variavel que retorna uma classe Form"
         raise NotImplementedError('You need to override "FORM"!!')
 
     def get(self, template=None, form=None, **kwargs):

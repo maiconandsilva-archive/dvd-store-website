@@ -2,7 +2,6 @@
 from flask import redirect, abort
 from flask.helpers import flash, url_for
 from flask.globals import g, session
-from sqlalchemy import orm
 
 # LOCAL IMPORTS
 from app import app, db
@@ -23,15 +22,11 @@ class AccountEdit(FormMethodView, RequiredLoginViewMixin):
 
     FORM = UpdateAccountForm
 
-    def get(self):
-        # TODO:
-        return super().get()
-
     @form_validated_or_page_with_errors
     @commit_on_finish
     def post(self, form=None):
         customer = Customers.from_form(form)
-        yield customer # deletes customer
+        yield customer
         return self.get(template=AccountView.TEMPLATE)
 
 
@@ -39,7 +34,6 @@ class AccountView(MethodViewWrapper, RequiredLoginViewMixin):
     """Tela para visualizar dados do Customer"""
 
     def get(self):
-        # TODO:
         form = UpdateAccountForm(obj=g.user)
         del form.password
         del form.username
@@ -53,7 +47,7 @@ class AccountDelete(MethodViewWrapper, RequiredLoginViewMixin):
         if g.user is None:
             flash('Customer not found', category='error')
             abort(404)
-        # TODO: Check if customer active
+
         user_personal_info = CustomerPersonalInfo.from_customer(g.user)
         g.user.anonymized().save()
         user_personal_info.save()
@@ -77,15 +71,14 @@ class Signin(FormMethodView, RequiredLoggedoutViewMixin):
     
     @form_validated_or_page_with_errors
     def post(self, form=None):
-        try:
-            customer = Customers.query.filter(
-                Customers.email==form.email.data).one() #TODO: one_or_none
-            if customer.is_active:
-                if customer.password == form.password.data:
-                    session['customerid'] = customer.customerid
-                    return redirect(url_for(AccountView.ROUTE))
-        except orm.exc.NoResultFound:
-            pass
+
+        customer = Customers.query.filter(
+            Customers.email==form.email.data).one_or_none()
+        
+        if customer and customer.is_active:
+            if customer.password == form.password.data:
+                session['customerid'] = customer.customerid
+                return redirect(url_for(AccountView.ROUTE))
         
         flash("Email or Password doesn't match")
         return self.get(form=form)
@@ -99,10 +92,8 @@ class Signup(FormMethodView, RequiredLoggedoutViewMixin):
     @form_validated_or_page_with_errors
     @commit_on_finish
     def post(self, form=None):
-        # TODO: Verify if username doesn't exist already
         customer = Customers.from_form(form)
         
-        # FIXME: Bug when form has errors
         yield customer
 
         flash('Thank You For Signing Up!')
