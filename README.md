@@ -72,13 +72,14 @@ divididas em sprints, e para controle dessas, foram utilizados ferramentas como 
 - [x] BurnDown / Velocity Chart
 
 ### Sprint 4
-- [x] Aplicar máscaras ao cliente deletado no banco para campos o e-mail, cartão de crédito e telefone
+- [x] Aplicar máscaras ao cliente deletado no banco para campos o e-mail e telefone
 - [x] Aplicar máscaras para visualização de informações pessoais do cliente em sua conta
 - [x] Pseudonimização (transferir dados do cliente para outra tabela)
 - [x] Criptografar dados pessoais do cliente "pseudonimizado"
 
 ### Sprint 5
-- [ ] Implementar estrutura para guardar chaves advindas da Pseudonimização do cliente
+- [ ] Estrutura para guardar chaves advindas da Pseudonimização do cliente
+- [ ] Botao que permite download de dados do proprio cliente em arquivo html
 - [ ] Implementar autorização para clientes com senhas antes não criptografadas
 - [ ] Validação dos campos do usuário
 
