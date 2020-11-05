@@ -5,6 +5,21 @@
   {% endif %}
   <div class="uk-margin">
     {# <label for="{{ field.id}}">{{ field.label.text }}</label> #}
-    {{ field(class_=' '.join([class_, errcclass]), **kwargs) | safe }}
+    {% if not field.flags.hidden %}
+      {{ field(class_=' '.join([class_, errcclass]), **kwargs) | safe }}
+    {% endif %}
   </div>
+{% endmacro %}
+
+{% macro r_info_from_str(field_label, field_value) %}
+  <div class="uk-margin">
+    <tr>
+      <td>{{ field_label|upper | safe }}</td>
+      <td>{{ field_value or "" }}</td>
+    </tr>
+  </div>
+{% endmacro %}
+
+{% macro r_info_field(field) %}
+  {{ r_info_from_str(field.label, field.data) }}
 {% endmacro %}

@@ -1,32 +1,42 @@
 {% extends "_base.jinja" %}
 
+{% from "_formhelpers.jinja" import r_info_from_str %}
+{% from "_formhelpers.jinja" import r_info_field %}
+
 {% set title = "Account" %}
 {% block TITLE %}{{ title }}{% endblock %}
 
 {% block CONTENT %}
 <div>
 <div class="uk-grid-small uk-child-width-1-2@s uk-flex-center uk-text-center" uk-grid>
-    <div>
-        <div class="uk-card uk-card-primary uk-card-body">
-        <h3 class="uk-card-title">MY ACCOUNT</h3>
+<div>
 
-        <table class="uk-table uk-table-middle uk-table-divider uk-text-left">
-        <tbody>
-        {# TODO: Refactor this uglyness. It works for now :) #}
-            {% for field in form %}
-                {% if field.label.text == 'gender' %}
-                    <tr><td>{{ field.label.text|upper }}</td><td>{{ field.object_data.value or "" }}</td></tr>
-                {% elif field.label.text == 'email' %}
-                    <tr><td>{{ field.label.text|upper }}</td><td>{{ mask(field.data, pattern=mask.EMAIL) }}</td></tr>
-                {% elif field.label.text == 'phone' %}
-                    <tr><td>{{ field.label.text|upper }}</td><td>{{ mask(field.data.international, 4, 2) }}</td></tr>
-                {% else %}
-                    <tr><td>{{ field.label.text|upper }}</td><td>{{ field.data or "" }}</td></tr>
-                {% endif %}           
-            {% endfor %}
-        <tbody>
-        </table>
-        <a href="{{ url_for('account-delete') }}"><button class="uk-button uk-button-danger">Delete</button></a>
-    </div>
+
+<div class="uk-card uk-card-primary uk-card-body">
+<h3 class="uk-card-title">MY ACCOUNT</h3>
+
+<table class="uk-table uk-table-middle uk-table-divider uk-text-left">
+    <tbody>
+    {{ r_info_from_str(form.email.label, mask(form.email.data, pattern=mask.EMAIL)) }}
+    {{ r_info_from_str(form.phone.label, mask(form.phone.data.e164, 4, 2)) }}
+    {{ r_info_field(form.firstname) }}
+    {{ r_info_field(form.lastname) }}
+    {{ r_info_field(form.income) }}
+    {{ r_info_field(form.city) }}
+    {{ r_info_field(form.state) }}
+    {{ r_info_from_str(form.gender.label, form.gender.object_data.value) }}
+    {{ r_info_field(form.country) }}
+    {{ r_info_field(form.address1) }}
+    {{ r_info_field(form.creditcard) }}
+    {{ r_info_field(form.age) }}
+    {{ r_info_field(form.zip) }}
+    {{ r_info_field(form.address2) }}
+    {{ r_info_field(form.creditcardexpiration) }}
+    <tbody>
+</table>
+<a href="{{ url_for('account-delete') }}"><button class="uk-button uk-button-danger">Delete</button></a>
+
+
+</div>
 </div>
 {% endblock %}

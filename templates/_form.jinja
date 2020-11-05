@@ -18,7 +18,7 @@
     <h3 class="uk-card-title">{% block FORM_TITLE %}{% endblock %}</h3>
         <form method="post">
             {% block BEFORE_FORM_CONTENT %}{% endblock %}
-
+            {{ form.hidden_tag() }}
             {% block FORM_CONTENT %}
                 {% for field in form %}
                     {{ render_field(field, "uk-input", "uk-form-danger",
