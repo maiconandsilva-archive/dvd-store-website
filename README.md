@@ -1,5 +1,5 @@
 # :abcd: Projeto Segurança da Informação 
-[![Tested with TestCafe](https://img.shields.io/badge/python-v3.7-blue)](https://github.com/DevExpress/testcafe) ![Tested with TestCafe](https://img.shields.io/badge/docker%20build-automated-066da5)
+[![](https://img.shields.io/badge/python-v3.8-blue)](https://github.com/DevExpress/testcafe) ![](https://img.shields.io/badge/docker%20build-automated-066da5)
 
 > Estudo de caso sobre Anonimização de Dados sensíveis dos clientes da Dell Store usando [PostgreSQL](https://www.postgresql.org/) 
 
@@ -14,14 +14,19 @@ Esta versão requer o Docker e Docker-Compose. Se você está utilizando o Windo
 docker-compose version 1.27.4
 Docker version 19.03.13
 ```
+#### Principais bibliotecas Python usadas
 
-| Ferramenta | Versão                               |
+| Biblioteca | Versão                               |
 |-------|--------------------------------------|
+| cryptography | 3.2.1 |
 | Flask     | 1.1.2                      |
 | Flask-SQLAlchemy    | 2.4.4 |
+| Flask-WTF | 0.14.3 |
 | Jinja2    | 2.11.2             |
 | psycopg2     | 2.8.6                  |
 | SQLAlchemy    | 1.3.19        |
+| SQLAlchemy-Utils | 0.36.8 |
+| WTForms-Alchemy | 0.17.0 |
 
 ##  :rocket: Inicialização 
 
@@ -33,59 +38,56 @@ docker-compose up --build -d
 docker-compose up -d
 
 # URL de acesso 
-url: http://127.0.0.1/signup
+url: http://127.0.0.1/
 ```
-
-## :beers: Contribuições
-
-Estamos muito felizes em ver contribuições em potencial, então não hesite. Se você tiver alguma sugestão, ideia ou problema, sinta-se à vontade para adicionar um novo [issue](https://github.com/WilliamBarretoH/DataBase-Anonymization/issues), mas primeiro verifique se a sua pergunta não repete as anteriores.
-
-
-## :lock: Licença
-
-Consulte o arquivo [LICENSE](LICENSE) para obter os direitos e limitações da licença (FATEC).
-
-
 ## :gear: Processo de Desenvolvimento
 Como framework de desenvolvimento dessa aplicação foi aplicada o Scrum - Metodologia Ágil de Desenvolvimento de softwares, e as entregas desse projeto foram
 divididas em sprints, e para controle dessas, foram utilizados ferramentas como o Nosso [Board no Trello](https://trello.com/b/PyOFWkYC/si) e também nossa Planilha de [BurnDown](https://docs.google.com/spreadsheets/d/1tDluxMUywgS5cD-ZQRGEMXdzJRsSD_wp/edit#gid=699714556).
 
 
 ### Sprint 1
+**Destinada à pesquisas e à configuração inicial do projeto.**
 
-- [x] Estudo sobre principais ferramentas SGDB para o projeto.
-- [x] Estudo e testes sobre principais linguagens de manipulação de dados.
-- [x] Preparação do Ambiente em Docker
+- [x] Inicialização do projeto.
+- [x] Configuração do ambiente em Docker (serviços de banco de dados e aplicação Flask)
 
 ### Sprint 2
-- [x] Criação de Rotas iniciais para testes de manipulação de dados.
-- [x] Exclusão de um usuário com técnica de anonimização 
-- [x] Início da Anonimização de dados fictícios de cliente da Dell Store
+**Destinada à criação de rotas e telas principais.**
+
+- [x] Exclusão de usuário com técnica de anonimização
 - [x] Rota de listagem dos dados dos clientes pós anonimização.
 
 ### Sprint 3
-- [x] Criptografia da senha do usuário
-- [x] Rota de criar usuário
-- [x] Botão para ativar rota de anonimização
-- [x] Autenticação
-- [x] Telas de interação do usuário
-- [x] BurnDown / Velocity Chart
+**Destinada à criação de rotas e telas para registro e autenticação.**
+g
+- [x] Rota para criar conta, login e visualizar dados
+- [x] Rota de requisição para deletar conta de usuário (para anonimizar e pseudonomizar)
 
 ### Sprint 4
-- [x] Aplicar máscaras ao cliente deletado no banco para campos o e-mail e telefone
-- [x] Aplicar máscaras para visualização de informações pessoais do cliente em sua conta
-- [x] Pseudonimização (transferir dados do cliente para outra tabela)
-- [x] Criptografar dados pessoais do cliente "pseudonimizado"
+**Destinada à Pseudonimizacao dos dados do usuário/cliente através de requisição e criação de máscaras após requisição para deletar conta (anonimização com fim analítico).**
 
-### Sprint 5
-- [ ] Estrutura para guardar chaves advindas da Pseudonimização do cliente
-- [ ] Botao que permite download de dados do proprio cliente em arquivo html
-- [ ] Implementar autorização para clientes com senhas antes não criptografadas
-- [ ] Validação dos campos do usuário
+- [x] Pseudonimização dos dados do usuário
+- [x] Aplicar máscaras para os campos e-mail e telefone
+- [x] Aplicar máscaras para visualização de dados pessoais na conta do usuario
 
-### Sprint 6
-- [ ] Implementar tela de visualização de produtos
+### [Sprint 5](https://github.com/maiconandsilva/LGPD-compliant-website/milestone/1)
+_A partir da sprint 5 o gerenciamento das tarefas mudou para o [Kanban](https://github.com/maiconandsilva/LGPD-compliant-website/projects/1?fullscreen=true) e o [Milestones com Issues](https://github.com/maiconandsilva/LGPD-compliant-website/milestones) do Github._
+
+**Destinada à [revisão da documentação](https://github.com/maiconandsilva/LGPD-compliant-website/issues/5) e à funcionalidade de [solicitação de relatório](https://github.com/maiconandsilva/LGPD-compliant-website/issues/3).**
+
+- [Tarefas abertas](https://github.com/maiconandsilva/LGPD-compliant-website/milestone/1)
+- [Tarefas fechadas](https://github.com/maiconandsilva/LGPD-compliant-website/milestone/1?closed=1)
+
+### [Sprint 6](https://github.com/maiconandsilva/LGPD-compliant-website/milestone/2)
+**Destinada à correção de bugs, implementação final de telas e demonstração do projeto.**
+
+- [Tarefas abertas](https://github.com/maiconandsilva/LGPD-compliant-website/milestone/2)
+- [Tarefas fechadas](https://github.com/maiconandsilva/LGPD-compliant-website/milestone/2?closed=1)
 
 ## :anchor: Fontes
 - Exemplo da Empresa Dell Store de [Banco de dados ](https://linux.dell.com/dvdstore/) utilizado para anonimização.
+
+## :lock: Licença
+
+Consulte o arquivo [LICENSE](LICENSE) para obter os direitos e limitações da licença (FATEC).
 
