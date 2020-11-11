@@ -4,7 +4,7 @@
 > Estudo de caso sobre Anonimização de Dados sensíveis dos clientes da Dell Store usando [PostgreSQL](https://www.postgresql.org/) 
 
 **Membros do grupo**
-- Michael Silva   - [GitHub](https://github.com/maiconandsilva) 
+- Maicon Mauricio - [GitHub](https://github.com/maiconandsilva) 
 - André Rodrigues - [GitHub](https://github.com/Andrerodrigues0018) 
 - Willian Barreto - [GitHub](https://github.com/WilliamBarretoH) 
 - Gabriel Costas  - [GitHub](https://github.com/c0sta) 
