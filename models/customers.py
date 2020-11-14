@@ -1,6 +1,7 @@
 # THIRD PARTY IMPORTS
 from flask.globals import request
 from datetime import datetime
+from sqlalchemy.orm import backref
 import sqlalchemy_utils as su
 
 # LOCAL IMPORTS
@@ -40,12 +41,12 @@ class Customers(db.Model):
     age = db.Column(db.Integer, info={'anonymize': True})
     income = db.Column(db.Integer, info={'anonymize': True})
     gender = db.Column(su.ChoiceType(GENDERS, impl=db.String(1)))
-    _deleted_at = db.Column('deleted_at', db.DateTime)
-    shopping_history = db.relationship('Orders', secondary='cust_hist')
+    deleted_at = db.Column('deleted_at', db.DateTime)
+    shopping_history = db.relationship('Orders', backref='customer')
 
     @property
     def is_active(self):
-        return self._deleted_at is None
+        return self.deleted_at is None
   
     @classmethod
     def from_form(cls, form):

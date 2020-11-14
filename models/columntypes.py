@@ -7,6 +7,7 @@ import passlib.exc
 
 
 class CustomPassword(sqlalchemy_utils.Password):
+    """Fixes #12 issue from Github"""
     def __eq__(self, value):
         try:
             return super().__eq__(value)
