@@ -1,0 +1,35 @@
+.container {
+    max-width: 720px;
+    margin-top: 5%;
+    margin-bottom:10%;
+}
+
+/* Index.jinja */
+.title {
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.header {
+	text-align: center;
+}
+
+.value-prop {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+img.value-img {
+	display: block;
+	text-align: center;
+	margin: 2.5rem auto 0;
+}
+
+@media (min-width: 550px) {
+.header {
+    margin-top: 16rem;
+}
+.value-img {
+    margin-bottom: 1rem;
+}
+}
