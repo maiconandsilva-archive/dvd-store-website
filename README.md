@@ -3,18 +3,29 @@
 
 > Estudo de caso sobre Anonimização de Dados sensíveis dos clientes da Dell Store usando [PostgreSQL](https://www.postgresql.org/) 
 
-**Membros do grupo**
-- Maicon Mauricio - [GitHub](https://github.com/maiconandsilva) 
-- André Rodrigues - [GitHub](https://github.com/Andrerodrigues0018) 
-- Willian Barreto - [GitHub](https://github.com/WilliamBarretoH) 
-- Gabriel Costa  - [GitHub](https://github.com/c0sta) 
-- Raphael Victor  - [GitHub](https://github.com/raphariibeira) 
-- Gustavo Robert  - [GitHub](https://github.com/gu-robert) 
-- Pablo Gabriel   - [GitHub](https://github.com/PGabriel-MB) 
-- Mauro Toshiuki  - [GitHub](https://github.com/maurosakugawa) 
+## :dart: Objetivos
 
+Projeto designado à matéria de Segurança da Informação, lecionado pelo professor Eduardo Sakaue, trouxe consigo o desafio de implementar uma solução para tópicos abordados na Lei Geral de Proteção de Dados (LGPD).
 
-Esse projeto tem o intuito de demonstrar a aplicação de técnicas para um banco de dados anonimizado ideal para uma empresa, seguindo as regras da Lei Geral de Proteção de Dados, fazendo com seja possível a exclusão dos dados sensíveis dos clientes sem a necessidade da exclusão de dados importantes para a empresa, como informações de vendas. Por meio de uma API que simule tal funcionamento.  
+A Lei Geral de proteção de Dados, de caráter Multidisciplinar e extraterritorial, é a legislação que regula a coleta, armazenamento, tratamento e compartilhamento de dados pessoais, impondo um padrão mais elevado de proteção e penalidades significativas para o não cumprimento da norma. Ela é um marco legal de grande impacto, englobando instituições públicas e privadas.
+
+Essa lei surge com a finalidade de proteger direitos fundamentais, como:
+
+- Privacidade;
+- Autodeterminação informativa;
+- Liberdade de expressão, de informação, de comunicação e de opinião;
+- Inviolabilidade da intimidade da honra e da imagem;
+- Desenvolvimento econômico, tecnológico e a inovação;
+- A livre iniciativa, a livre concorrência e a defesa do consumidor;
+- Direitos humanos: o livre desenvolvimento da personalidade, dignidade e o exercício da cidadania pelas pessoas naturais.
+
+## :mag: Abordagem
+
+> Estudo de caso sobre Anonimização de Dados sensíveis dos clientes da Dell Store usando [PostgreSQL](https://www.postgresql.org/) 
+
+Seguindo um conceito para maior seguranca dos dados, nesse projeto foi feito uma pseudoanonimizacao na base de dados, que consiste em separar dados sensiveis do cliente dos dados de estatisticas para a empresa, armazenando-os em bancos diferentes resultando em mais seguranca na base de dados dos clientes, pois o mesmo conta com mais criptografia. 
+
+Com isso e possivel acessar e alterar dados estatisticos sem a necessidade de violar a privacidade dos clientes. Tambem, facilitando a exclusao dos dados do cliente, quando o mesmo a solicita, pois conseguimos desvincular seus dados sensiveis dos dados importantes para a empresa.  
 
 
 ## :cd: Dependências
@@ -102,3 +113,12 @@ _A partir da sprint 5 o gerenciamento das tarefas mudou para o [Kanban](https://
 
 Consulte o arquivo [LICENSE](LICENSE) para obter os direitos e limitações da licença (FATEC).
 
+## Membros do grupo 
+- Maicon Mauricio - [GitHub](https://github.com/maiconandsilva) 
+- André Rodrigues - [GitHub](https://github.com/Andrerodrigues0018) 
+- Willian Barreto - [GitHub](https://github.com/WilliamBarretoH) 
+- Gabriel Costa  - [GitHub](https://github.com/c0sta) 
+- Raphael Victor  - [GitHub](https://github.com/raphariibeira) 
+- Gustavo Robert  - [GitHub](https://github.com/gu-robert) 
+- Pablo Gabriel   - [GitHub](https://github.com/PGabriel-MB) 
+- Mauro Toshiuki  - [GitHub](https://github.com/maurosakugawa) 
