@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block TITLE %}{% endblock %}</title>
+    {% include "report/_head.jinja" %}
+    {% block CUSTOM_HEAD %}{% endblock %}
+</head>
+<body>
+<!-- Primary Page Layout –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container">
+        {% block CONTAINER %}{% endblock %}
+    </div>
+    {% block FOOTER %}{% endblock %}
+<!-- End Document –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script>feather.replace()</script>
+</body>
+</html>

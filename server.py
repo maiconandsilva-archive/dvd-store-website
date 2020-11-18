@@ -1,5 +1,4 @@
 # THIRD PARTY IMPORTS
-from flask.globals import g
 
 # LOCAL IMPORTS
 from app import app
@@ -11,6 +10,8 @@ app.add_url_rule('/signup', view_func=Signup.as_view('signup'))
 app.add_url_rule('/account', view_func=AccountView.as_view('account'))
 app.add_url_rule('/account/signout', view_func=Signout.as_view('signout'))
 app.add_url_rule('/account/delete', view_func=AccountDelete.as_view('account-delete'))
+
+app.add_url_rule('/data-report', view_func=CustomerDataReport.as_view('data-report'))
 
 if __name__ == '__main__':
     from debugger import initialize_flask_server_debugger_if_needed
