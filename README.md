@@ -27,6 +27,28 @@ Seguindo um conceito para maior seguranca dos dados, nesse projeto foi feito uma
 
 Com isso e possivel acessar e alterar dados estatisticos sem a necessidade de violar a privacidade dos clientes. Tambem, facilitando a exclusao dos dados do cliente, quando o mesmo a solicita, pois conseguimos desvincular seus dados sensiveis dos dados importantes para a empresa.  
 
+## :pushpin: Demonstração
+
+![Solicitacao relatorio](https://user-images.githubusercontent.com/64911189/99540801-c6a92200-298e-11eb-9048-76d7ff81892a.gif)
+
+![Solicitar relatorio e deletar minha conta](https://user-images.githubusercontent.com/64911189/99544281-e17d9580-2992-11eb-8a7c-c15e2064979b.gif)
+
+![Pseudonimização e relatório](https://user-images.githubusercontent.com/64911189/99548887-e09b3280-2997-11eb-9b88-7e94f80c5715.gif)
+
+
+
+##  :rocket: Inicialização 
+
+``` bash
+# Executar aplicação pela primeira vez 
+docker-compose up --build -d
+
+# Executar
+docker-compose up -d
+
+# URL de acesso 
+url: http://127.0.0.1/
+```
 
 ## :cd: Dependências
 
@@ -36,6 +58,7 @@ Esta versão requer o Docker e Docker-Compose. Se você está utilizando o Windo
 docker-compose version 1.27.4
 Docker version 19.03.13
 ```
+
 #### Principais bibliotecas Python usadas
 
 | Biblioteca | Versão                               |
@@ -50,18 +73,6 @@ Docker version 19.03.13
 | SQLAlchemy-Utils | 0.36.8 |
 | WTForms-Alchemy | 0.17.0 |
 
-##  :rocket: Inicialização 
-
-``` bash
-# Executar aplicação pela primeira vez 
-docker-compose up --build -d
-
-# Executar
-docker-compose up -d
-
-# URL de acesso 
-url: http://127.0.0.1/
-```
 ## :gear: Processo de Desenvolvimento
 Como framework de desenvolvimento dessa aplicação foi aplicada o Scrum - Metodologia Ágil de Desenvolvimento de softwares, e as entregas desse projeto foram
 divididas em sprints, e para controle dessas, foram utilizados ferramentas como o Nosso [Board no Trello](https://trello.com/b/PyOFWkYC/si) e também nossa Planilha de [BurnDown](https://docs.google.com/spreadsheets/d/1tDluxMUywgS5cD-ZQRGEMXdzJRsSD_wp/edit#gid=699714556).
