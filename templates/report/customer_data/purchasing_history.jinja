@@ -1,6 +1,6 @@
 {% extends "report/customer_data/_account_data.jinja" %}
 {% from "report/_render_helpers.jinja" import r_tr %}
-{% from "report/_helpers.jinja" import label, r_multiple_tags %}
+{% from "_helpers.jinja" import label, r_multiple_tags %}
 
 {% block TITLE %}Purchasing History{% endblock %}
 
@@ -56,11 +56,12 @@
 
 <table class="u-full-width">
     <thead>
-    {% with purchase=user.shopping_history[0] %}
+    {% with details=user.shopping_history[0].details[0] %}
         {{ r_tr(r_multiple_tags(
-            label(purchase.details[0].product.md.title),
-            label(purchase.details[0].product.md.actor),
-            label(purchase.details[0].md.quantity),
+            label(details.product.md.title),
+            label(details.product.category.md.categoryname),
+            label(details.product.md.actor),
+            label(details.md.quantity),
             name='th'),
         tag=true) }}
     {% endwith %}
@@ -70,6 +71,7 @@
         {% set productlink %}<a href="#">{}</a>{% endset %}
         {{ r_tr(
             productlink.format(detail.product.title|title),
+            detail.product.category.categoryname,
             detail.product.actor|title,
             detail.quantity) }}
     {% endfor %}
