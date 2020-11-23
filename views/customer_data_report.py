@@ -42,7 +42,6 @@ class CustomerDataReport(RequiredLoginViewMixin, MethodView):
     def path_template(self, template):
         return self.TPL_BASE_DIR + template + self.TPL_EXT
     
-    # @form_validated_or_page_with_errors
     def post(self):
         report_name = self.build_customer_data_report()
         return send_file(report_name, mimetype='zip', as_attachment=True)

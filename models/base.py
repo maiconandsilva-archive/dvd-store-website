@@ -11,6 +11,8 @@ class BaseModel(Model):
         """
         Return class to gather metadata from the table and column attributes.
         Very useful for using in templates. Better than using instance.__class__
+        
+        IMPORTANT: md is stands for metadata
         """
         return type(self)
     

@@ -5,14 +5,11 @@ import os
 
 
 class Settings:
-    DEBUG = False
-    TESTING = False
     SQLALCHEMY_ECHO = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = os.environ['FLASK_SECRET_KEY']
-    FLASK_PORT = os.environ['FLASK_PORT']
+    
     REPORT_PATH = os.path.join('.app', 'report', 'customer_data')
-
     APP_TEMPLATE_EXT = '.jinja' # Custom
 
     def _database_uri(self, uri, password_file):
@@ -34,9 +31,19 @@ class Settings:
 
 
 class Dev(Settings):
+    FLASK_ENV = 'development'
     DEBUG = True
     TESTING = True
-
     SQLALCHEMY_ECHO = True
-    
     SEND_FILE_MAX_AGE_DEFAULT = 0
+
+
+class Homolog(Settings):
+    DEBUG = False
+    Testing = True
+    
+
+class Prod(Settings):
+    FLASK_ENV = 'production'
+    DEBUG = False
+    TESTING = False

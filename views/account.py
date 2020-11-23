@@ -3,9 +3,9 @@ from flask import redirect, abort
 from flask.helpers import flash, url_for
 from flask.globals import g, session
 from sqlalchemy.inspection import inspect
+from multiprocessing import Process
 
 # LOCAL IMPORTS
-from app import app, db
 from helpers import (
     commit_on_finish,
     form_validated_or_page_with_errors,
@@ -16,6 +16,7 @@ from models.isolated.customer_personal_info import CustomerPersonalInfo
 from views.utils import (FormMethodView, MethodViewWrapper,
     RequiredLoggedoutViewMixin, RequiredLoginViewMixin,
 )
+import app
 
 
 class AccountEdit(FormMethodView, RequiredLoginViewMixin):
@@ -59,11 +60,11 @@ class AccountDelete(MethodViewWrapper, RequiredLoginViewMixin):
     
     def store_key_id(self, customerid):
         """Store id;key on an isolated environment"""
-        # TODO: Change how to manage the keys
-        # something like KMS from Amazon
-        with open('isolated_db_keys.txt', 'a') as f:
-            f.write('%s;%s\n' % (customerid, session['cryptkey'].decode()))
-    
+        set_secret_task = Process(daemon=True,
+            target=app.secret_vault_client.set_secret,
+            args=(customerid, session['cryptkey'].decode()))
+        set_secret_task.start()
+
 
 class Signin(FormMethodView, RequiredLoggedoutViewMixin):
     """Rota de login"""

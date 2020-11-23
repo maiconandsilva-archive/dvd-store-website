@@ -30,3 +30,8 @@ class PasswordType(sqlalchemy_utils.PasswordType):
         "CustomPassword is only used when loading from the database"
         if value is not None:
             return CustomPassword(value, self.context)
+        
+
+class EmailType(sqlalchemy_utils.EmailType):
+    def process_result_value(self, value, dialect):
+        return value
