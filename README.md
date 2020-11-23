@@ -3,6 +3,17 @@
 
 > Estudo de caso sobre Anonimização de Dados sensíveis dos clientes da Dell Store usando [PostgreSQL](https://www.postgresql.org/) 
 
+**Membros do grupo**
+- Maicon Mauricio - [GitHub](https://github.com/maiconandsilva) 
+- André Rodrigues - [GitHub](https://github.com/Andrerodrigues0018) 
+- Willian Barreto - [GitHub](https://github.com/WilliamBarretoH) 
+- Gabriel Costa  - [GitHub](https://github.com/c0sta) 
+- Raphael Victor  - [GitHub](https://github.com/raphariibeira) 
+- Gustavo Robert  - [GitHub](https://github.com/gu-robert) 
+- Pablo Gabriel   - [GitHub](https://github.com/PGabriel-MB) 
+- Mauro Toshiuki  - [GitHub](https://github.com/maurosakugawa) 
+
+
 Esse projeto tem o intuito de demonstrar a aplicação de técnicas para um banco de dados anonimizado ideal para uma empresa, seguindo as regras da Lei Geral de Proteção de Dados, fazendo com seja possível a exclusão dos dados sensíveis dos clientes sem a necessidade da exclusão de dados importantes para a empresa, como informações de vendas. Por meio de uma API que simule tal funcionamento.  
 
 
@@ -59,7 +70,6 @@ divididas em sprints, e para controle dessas, foram utilizados ferramentas como 
 
 ### Sprint 3
 **Destinada à criação de rotas e telas para registro e autenticação.**
-g
 - [x] Rota para criar conta, login e visualizar dados
 - [x] Rota de requisição para deletar conta de usuário (para anonimizar e pseudonomizar)
 
@@ -85,7 +95,11 @@ _A partir da sprint 5 o gerenciamento das tarefas mudou para o [Kanban](https://
 - [Tarefas fechadas](https://github.com/maiconandsilva/LGPD-compliant-website/milestone/2?closed=1)
 
 ## :anchor: Fontes
-- Exemplo da Empresa Dell Store de [Banco de dados ](https://linux.dell.com/dvdstore/) utilizado para anonimização.
+- [Banco de dados Dell Store](https://linux.dell.com/dvdstore/) utilizado para anonimização.
+
+## :lock: Licença
+
+Consulte o arquivo [LICENSE](LICENSE) para obter os direitos e limitações da licença (FATEC).
 
 ## :lock: Licença
 

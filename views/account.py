@@ -2,6 +2,7 @@
 from flask import redirect, abort
 from flask.helpers import flash, url_for
 from flask.globals import g, session
+from sqlalchemy.inspection import inspect
 
 # LOCAL IMPORTS
 from app import app, db
@@ -77,6 +78,9 @@ class Signin(FormMethodView, RequiredLoggedoutViewMixin):
         
         if customer and customer.is_active:
             if customer.password == form.password.data:
+                if inspect(customer).modified:
+                    # If password was unencrypted, save new encrypted password
+                    customer.save()
                 session['customerid'] = customer.customerid
                 return redirect(url_for(AccountView.ROUTE))
         
