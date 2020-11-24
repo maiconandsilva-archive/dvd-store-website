@@ -1,0 +1,21 @@
+{% extends "_base.jinja" %}
+
+{% block CONTENT %}
+<a href="{{ url_for('signin') }}">
+{% block error_image %}
+    <img class="uk-align-center uk-margin-xlarge-top" alt="" height="30%" width="30%" src="{{ url_for('static', filename='img/general_error.svg') }}">
+{% endblock %}
+</a>
+<div class="uk-align-center"> 
+    <h1 class="uk-text-center uk-heading-medium">
+    {% block error_code %}
+    {% endblock %}
+    </h1>
+</div>
+<div class="uk-align-center uk-padding-large uk-padding-remove-top">
+    <div class="uk-card uk-card-primary">
+        {% block error_message %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}
