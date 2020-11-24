@@ -1,0 +1,17 @@
+{% from "report/_helpers.jinja" import attrs_kwargs, r_tag %}
+
+
+{%- macro r_tr() -%}
+<tr>
+    {%- if kwargs.get('tag') is none -%}
+        {%- for data in varargs -%}
+            {{ r_tag(data, name='td') }}
+        {%- endfor -%}
+    {%- else -%}
+    {# if td=r_tag(data, name='tag') is passed, render it #}
+        {%- for data in varargs  -%}
+            {{ data }}
+        {%- endfor -%}
+    {%- endif -%}
+</tr>
+{%- endmacro -%}

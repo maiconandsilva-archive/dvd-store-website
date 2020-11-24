@@ -1,3 +1,7 @@
+# THIRD PARTY IMPORTS 
+from sqlalchemy.orm import backref
+
+# LOCAL IMPORTS
 from app import db
 import models.products as mp
 
@@ -26,6 +30,7 @@ class Orders(db.Model):
     totalamount  = db.Column(db.Numeric(precision=12, scale=2), nullable=False)
     customer = db.relationship('Customers')
     products = db.relationship(mp.Products, secondary='cust_hist')
+    details = db.relationship('OrderLines', backref='payment')
 
 
 class OrderLines(db.Model):
@@ -33,12 +38,12 @@ class OrderLines(db.Model):
 
     __tablename__ = 'orderlines'
 
-    orderlineid = db.Column(db.Integer, nullable=False)
+    orderlineid = db.Column(db.Integer, primary_key=True)
     orderid = db.Column(db.Integer,
         db.ForeignKey('orders.orderid'), primary_key=True)
     prod_id = db.Column(db.Integer,
-        db.ForeignKey('products.prod_id'), nullable=False)
+        db.ForeignKey('products.prod_id'), primary_key=True)
     quantity = db.Column(db.Integer, nullable=False)
-    orderdate = db.Column(db.DateTime, nullable=False)
     product = db.relationship(mp.Products)
     orders = db.relationship('Orders')
+

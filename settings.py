@@ -11,6 +11,7 @@ class Settings:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = os.environ['FLASK_SECRET_KEY']
     FLASK_PORT = os.environ['FLASK_PORT']
+    REPORT_PATH = os.path.join('.app', 'report', 'customer_data')
 
     APP_TEMPLATE_EXT = '.jinja' # Custom
 
@@ -37,3 +38,5 @@ class Dev(Settings):
     TESTING = True
 
     SQLALCHEMY_ECHO = True
+    
+    SEND_FILE_MAX_AGE_DEFAULT = 0
