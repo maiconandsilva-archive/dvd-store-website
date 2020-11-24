@@ -3,6 +3,18 @@
 
 > Estudo de caso sobre Anonimização de Dados sensíveis dos clientes da Dell Store usando [PostgreSQL](https://www.postgresql.org/) 
 
+**Membros do grupo**
+- Maicon Mauricio - [GitHub](https://github.com/maiconandsilva) 
+- André Rodrigues - [GitHub](https://github.com/Andrerodrigues0018) 
+- Willian Barreto - [GitHub](https://github.com/WilliamBarretoH) 
+- Gabriel Costa  - [GitHub](https://github.com/c0sta) 
+- Raphael Victor  - [GitHub](https://github.com/raphariibeira) 
+- Gustavo Robert  - [GitHub](https://github.com/gu-robert) 
+- Pablo Gabriel   - [GitHub](https://github.com/PGabriel-MB) 
+- Mauro Toshiuki  - [GitHub](https://github.com/maurosakugawa) 
+
+
+Esse projeto tem o intuito de demonstrar a aplicação de técnicas para um banco de dados anonimizado ideal para uma empresa, seguindo as regras da Lei Geral de Proteção de Dados, fazendo com seja possível a exclusão dos dados sensíveis dos clientes sem a necessidade da exclusão de dados importantes para a empresa, como informações de vendas. Por meio de uma API que simule tal funcionamento.  
 ## :dart: Objetivos
 
 Projeto designado à matéria de Segurança da Informação, lecionado pelo professor Eduardo Sakaue, trouxe consigo o desafio de implementar uma solução para tópicos abordados na Lei Geral de Proteção de Dados (LGPD).
@@ -34,7 +46,6 @@ Com isso e possivel acessar e alterar dados estatisticos sem a necessidade de vi
 ![Solicitar relatorio e deletar minha conta](https://user-images.githubusercontent.com/64911189/99544281-e17d9580-2992-11eb-8a7c-c15e2064979b.gif)
 
 ![Pseudonimização e relatório](https://user-images.githubusercontent.com/64911189/99548887-e09b3280-2997-11eb-9b88-7e94f80c5715.gif)
-
 
 
 ##  :rocket: Inicialização 
@@ -119,6 +130,10 @@ _A partir da sprint 5 o gerenciamento das tarefas mudou para o [Kanban](https://
 
 ## :anchor: Fontes
 - [Banco de dados Dell Store](https://linux.dell.com/dvdstore/) utilizado para anonimização.
+
+## :lock: Licença
+
+Consulte o arquivo [LICENSE](LICENSE) para obter os direitos e limitações da licença (FATEC).
 
 ## :lock: Licença
 

@@ -1,0 +1,16 @@
+{% extends "http_errors/fallback.jinja" %}
+
+{% block TITLE %} ERRO | 404 {% endblock %}
+
+{% block error_image %}
+    <img class="uk-align-center uk-margin-xlarge-top" alt="" height="30%" width="30%" src="{{ url_for('static', filename='img/error_404.svg') }}">
+{% endblock %}
+
+{% block error_code %} 404 {% endblock %}
+    
+{% block error_message %}
+
+    <h1 class="uk-heading-small uk-text-center">
+        Esta página não foi encontrada...
+    </h1>
+{% endblock %}
