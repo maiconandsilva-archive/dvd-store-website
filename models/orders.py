@@ -6,16 +6,6 @@ from app import db
 import models.products as mp
 
 
-customerhistory = db.Table('cust_hist',
-    db.Column('customerid', db.Integer,
-        db.ForeignKey('customers.customerid'), nullable=False),
-    db.Column('orderid', db.Integer,
-        db.ForeignKey('orders.orderid'), nullable=False),
-    db.Column('prod_id', db.Integer,
-        db.ForeignKey('products.prod_id'), nullable=False)
-)
-
-
 class Orders(db.Model):
     """Tabela de pedidos"""
 
@@ -28,8 +18,6 @@ class Orders(db.Model):
     netamount = db.Column(db.Numeric(precision=12, scale=2), nullable=False)
     tax = db.Column(db.Numeric(precision=12, scale=2), nullable=False)
     totalamount  = db.Column(db.Numeric(precision=12, scale=2), nullable=False)
-    customer = db.relationship('Customers')
-    products = db.relationship(mp.Products, secondary='cust_hist')
     details = db.relationship('OrderLines', backref='payment')
 
 

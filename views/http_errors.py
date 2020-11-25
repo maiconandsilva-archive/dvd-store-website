@@ -1,5 +1,4 @@
 from flask import render_template
-
 from app import app
 
 
@@ -9,4 +8,4 @@ def erro_404(error):
 
 @app.errorhandler(500)
 def erro_500(error):
-    return render_template('http_error/500.jinja')
+    return render_template('http_errors/500.jinja')
