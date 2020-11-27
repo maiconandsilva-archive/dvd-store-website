@@ -1,0 +1,47 @@
+{% extends "_base.jinja" %}
+
+{% from "_formhelpers.jinja" import render_field %}
+
+{% block CONTENT %}
+
+{% with messages = get_flashed_messages() %}
+    {% for message in get_flashed_messages() %}
+        <div class="uk-alert-primary" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p>{{ message }}</p>
+        </div>
+    {% endfor %}
+{% endwith %}
+
+<div class="uk-child-width-1-2 uk-margin-medium-top" uk-grid>
+
+    <div class="uk-align-left"> 
+        <img class="uk-margin-xlarge-top uk-align-center" alt="Login" height="60%" width="60%" src="{{ url_for('static', filename='img/secure_login.svg') }}">
+    </div>
+
+    <div class="uk-text-center" uk-grid>
+
+        <div class="uk-align-center uk-card-large uk-card-primary uk-card-body">
+
+            <h3 class="uk-card-title">{% block FORM_TITLE %}{% endblock %}</h3>
+            <form method="post">
+                {% block BEFORE_FORM_CONTENT %}{% endblock %}
+                {{ form.hidden_tag() }}
+                {% block FORM_CONTENT %}
+                    {% for field in form %}
+                        {{ render_field(field, "uk-input", "uk-form-danger",
+                            placeholder=field.label.text|title, value=field.data or "") }}
+                    {% endfor %}
+                {% endblock %}
+                {% block AFTER_FORM_CONTENT %}
+                    <button class="uk-button uk-button-primary" type="submit">
+                        {% block SUBMIT_BUTTON_NAME %}{% endblock %}
+                    </button>
+                {% endblock %}
+            </form>
+            <a  href="">{% block URL_REDIRECT%}{% endblock %}} </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
