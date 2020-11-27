@@ -79,3 +79,24 @@ class _Mask:
         return re.sub(pattern, mask_char * n_mask_char, data)
 
 mask = _Mask()
+
+
+class SecretClient:
+    """Dummy class for saving keys in a local file instead of Azure"""
+    
+    def __init__(self, file, *args, **kwargs):
+        self.file = file
+    
+    def set_secret(self, customerid, key, **kwargs):
+        with open(self.file, 'a') as f:
+            f.write('%s;%s\n' % (customerid, key))
+            
+    def get_secret(self, customerid, version=None, **kwargs):
+        with open('isolated_db_keys.txt') as file:
+            for line in file:
+                _cid, key = line.split(';')
+                if _cid == customerid:
+                    return key.rstrip()
+            else:
+                raise KeyError('No keys found in file %s '
+                                'for customerid %s' % (self.file, customerid))

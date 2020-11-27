@@ -11,14 +11,13 @@
 <div class="uk-grid-small uk-child-width-1-2@s uk-flex-center uk-text-center" uk-grid>
 <div>
 
-
 <div class="uk-card uk-card-primary uk-card-body">
 <h3 class="uk-card-title">MY ACCOUNT</h3>
 
 <table class="uk-table uk-table-middle uk-table-divider uk-text-left">
     <tbody>
     {{ r_info_from_str(form.email.label, mask(form.email.data, pattern=mask.EMAIL)) }}
-    {{ r_info_from_str(form.phone.label, mask(form.phone.data.e164, 4, 2)) }}
+    {{ r_info_from_str(form.phone.label, form.phone.data and mask(form.phone.data.e164, 4, 2)) }}
     {{ r_info_field(form.firstname) }}
     {{ r_info_field(form.lastname) }}
     {{ r_info_field(form.income) }}
@@ -35,9 +34,14 @@
     <tbody>
 </table>
 
-<form action="{{ url_for('account-delete') }}">
+<form class="uk-display-inline" action="{{ url_for('data-report') }}" method="post">
     {{ form.csrf_token }}
-    <button class="uk-button uk-button-danger" type="submit">Delete</button>
+    <button class="uk-button uk-button-primary" type="submit">Download My Data</button>
+</form>
+
+<form class="uk-display-inline" action="{{ url_for('account-delete') }}">
+    {{ form.csrf_token }}
+    <button class="uk-button uk-button-danger" type="submit">Delete My Account</button>
 </form>
 
 </div>

@@ -1,0 +1,69 @@
+{% extends "report/customer_data/_account_data.jinja" %}
+{% from "report/_render_helpers.jinja" import r_tr %}
+{% from "_helpers.jinja" import label %}
+
+{% block TITLE %}Customer Profile{% endblock %}
+
+{% block ACCOUNT_DATA_CUSTOM_STYLE %}
+  td {
+    width: 50%;
+  }
+{% endblock %}
+
+{% block DATA_REPORT %}
+
+<div class="row"><div class="twelve columns">
+
+<h4>Account Data</h4>
+
+<table class="u-full-width">
+  <thead>
+  </thead>
+  <tbody>
+    {{ r_tr(label(user.md.email), user.email) }}
+    {{ r_tr(label(user.md.phone), user.phone) }}
+    {{ r_tr(label(user.md.firstname), user.firstname) }}
+    {{ r_tr(label(user.md.lastname), user.lastname) }}
+    {{ r_tr(label(user.md.gender), user.gender) }}
+    {{ r_tr(label(user.md.age), user.age) }}
+    {{ r_tr(label(user.md.income), user.income) }}
+  </tbody>
+</table>
+
+</div></div>
+
+<div class="row"><div class="twelve column">
+
+<h4>Address</h4>
+<table class="u-full-width">
+  <thead>
+  </thead>
+  <tbody>
+    {{ r_tr(label(user.md.country), user.country) }}
+    {{ r_tr(label(user.md.zip), user.zip) }}
+    {{ r_tr(label(user.md.state), user.state) }}
+    {{ r_tr(label(user.md.city), user.city) }}
+    {{ r_tr(label(user.md.address1), user.address1) }}
+    {{ r_tr(label(user.md.address2), user.address2) }}
+  </tbody>
+</table>
+
+</div></div>
+
+<div class="row"><div class="twelve column">
+
+<h4>Payment Information</h4>
+
+<table class="u-full-width">
+  <thead>
+  </thead>
+  <tbody>
+    {{ r_tr(label(user.md.creditcardtype), user.creditcardtype) }}
+    {{ r_tr(label(user.md.creditcard), user.creditcard) }}
+    {{ r_tr(label(user.md.creditcardexpiration), user.creditcardexpiration) }}
+  </tbody>
+</table>
+
+</div></div>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "report/customer_data/_account_data.jinja" %}
+{% from "report/_render_helpers.jinja" import r_tr %}
+{% from "_helpers.jinja" import label, r_multiple_tags %}
+
+{% block TITLE %}Purchasing History{% endblock %}
+
+{% block DATA_REPORT %}
+
+<h3>Orders</h3>
+
+{% if not user.shopping_history %}
+
+<div class="row"><div class="twelve column">
+    No Orders were placed until now.
+</div></div>
+
+{% else %}
+
+<div class="row"><div class="twelve column">
+
+<table class="u-full-width">
+  <thead>
+{% with purchase = user.shopping_history[0].md %}
+    {{ r_tr(r_multiple_tags(
+        label(purchase.orderid),
+        label(purchase.orderdate),
+        label(purchase.netamount),
+        label(purchase.tax),
+        label(purchase.totalamount),
+        name='th'), tag=true) }}
+{% endwith %}
+  </thead>
+  <tbody>
+{% for purchase in user.shopping_history %}
+    {% set orderlink %}<a href="#order-{0}">#{0}</a>{% endset %}
+
+    {{ r_tr(
+        orderlink.format(purchase.orderid),
+        purchase.orderdate,
+        purchase.netamount,
+        purchase.tax,
+        purchase.totalamount) }}
+{% endfor %}
+  </tbody>
+</table>
+
+</div></div>
+
+
+<h3>Products purchased</h3>
+
+{% for purchase in user.shopping_history %}
+<div class="row"><div class="twelve column">
+
+<a name="order-{{purchase.orderid}}"><h5>#{{purchase.orderid}}</h5></a>
+
+<table class="u-full-width">
+    <thead>
+    {% with details=user.shopping_history[0].details[0] %}
+        {{ r_tr(r_multiple_tags(
+            label(details.product.md.title),
+            label(details.product.category.md.categoryname),
+            label(details.product.md.actor),
+            label(details.md.quantity),
+            name='th'),
+        tag=true) }}
+    {% endwith %}
+    </thead>
+    </tbody>
+    {% for detail in purchase.details %}
+        {% set productlink %}<a href="#">{}</a>{% endset %}
+        {{ r_tr(
+            productlink.format(detail.product.title|title),
+            detail.product.category.categoryname,
+            detail.product.actor|title,
+            detail.quantity) }}
+    {% endfor %}
+      </tbody>
+</table>
+
+</div></div>
+{% endfor %}
+
+
+{% endif %}
+{% endblock %}

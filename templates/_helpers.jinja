@@ -1,0 +1,22 @@
+{%- macro label(field) -%}
+  {{ (field.info.get('label') or field.key.replace('id', '')) | title | safe }}
+{%- endmacro -%}
+
+{%- macro attrs_kwargs(_kwargs) -%}
+  {%- if _kwargs is not none -%}
+    {%- for attr, value in _kwargs.items() -%}
+      {{ '{}={} '.format(attr, value) }}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endmacro -%}
+
+{%- macro r_tag(data) -%}
+  {% set tag = kwargs.pop('name') %}
+  <{{ tag }} {{ attrs_kwargs(kwargs) }}>{{ data or '' | title }}</{{ tag }}>
+{%- endmacro -%}
+
+{%- macro r_multiple_tags() -%}
+    {%- for tag in varargs -%}
+        {{ r_tag(tag, name=kwargs.get('name')) | safe }}
+    {%- endfor -%}
+{%- endmacro -%}

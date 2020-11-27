@@ -1,6 +1,7 @@
-{% extends "_form.jinja" %}
+{% extends "_authentication.jinja" %}
 
-{% set title = "SIGN IN" %}
+{% set title = "Sign In" url_redirect="/signup" %}
 {% block TITLE %}{{ title }}{% endblock %}
 {% block FORM_TITLE %}{{ title }}{% endblock %}
 {% block SUBMIT_BUTTON_NAME %}{{ title }}{% endblock %}
+{% block URL_REDIRECT %}{{ url_redirect }}{% endblock %}

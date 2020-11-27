@@ -1,0 +1,8 @@
+{% extends "report/_base.jinja" %}
+
+{% block CUSTOM_HEAD %}
+<style>
+    {% include "report/customer_data/_style.jinja.css" %}
+    {% block ACCOUNT_DATA_CUSTOM_STYLE %}{% endblock %}
+</style>
+{% endblock %}

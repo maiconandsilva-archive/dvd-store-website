@@ -21,13 +21,16 @@ ENV PYTHONUNBUFFERED ${PYTHON_DEBUG}
 
 WORKDIR /app
 
+# Switch to a non-root user, please refer to https://aka.ms/vscode-docker-python-user-rights
+RUN useradd appuser -m && chown -R appuser /app
+USER appuser
+
+# For Azure dependency scripts
+ENV PATH="/home/appuser/.local/bin:${PATH}"
+
 # Install pip requirements
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
-
-# Switch to a non-root user, please refer to https://aka.ms/vscode-docker-python-user-rights
-RUN useradd appuser && chown -R appuser /app
-USER appuser
 
 ENTRYPOINT [ "python" ]
 CMD [ "./server.py" ]
