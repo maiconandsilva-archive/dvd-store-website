@@ -1,6 +1,18 @@
-{% extends "_form.jinja" %}
-
+{% extends "_authentication.jinja" %}
 {% set title = "SIGN UP" %}
+
 {% block TITLE %}{{ title }}{% endblock %}
 {% block FORM_TITLE %}{{ title }}{% endblock %}
-{% block SUBMIT_BUTTON_NAME %}{{ title }}{% endblock %}
+
+{% block AFTER_FORM_CONTENT %}
+<div class="uk-flex uk-flex-column">
+    <button class="uk-button uk-button-primary" type="submit">
+        SIGN UP        
+    </button>
+
+    <a class="uk-link uk-margin-top" href="/signin">
+        Go back
+    </a>
+ </div>
+{% endblock %}
+
