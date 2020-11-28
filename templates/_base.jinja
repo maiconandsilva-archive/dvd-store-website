@@ -5,6 +5,8 @@
       {% include "_head.jinja" %}
       {% block LOCAL_HEAD %}{% endblock %}
     {% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='global.css') }}">
+
   </head>
 
   <body class="uk-grid uk-align-center uk-justify-center">
