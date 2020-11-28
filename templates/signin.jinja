@@ -1,7 +1,20 @@
 {% extends "_authentication.jinja" %}
 
-{% set title = "Sign In" url_redirect="/signup" %}
+{% set title = "SIGN IN" %}
+{% set redirect_name = "Sign up" %}}
 {% block TITLE %}{{ title }}{% endblock %}
 {% block FORM_TITLE %}{{ title }}{% endblock %}
-{% block SUBMIT_BUTTON_NAME %}{{ title }}{% endblock %}
-{% block URL_REDIRECT %}{{ url_redirect }}{% endblock %}
+
+
+{% block AFTER_FORM_CONTENT %}
+<div class="uk-flex uk-flex-column">
+    <button class="uk-button uk-button-primary" type="submit">
+        SIGN IN       
+    </button>
+
+    <a class="uk-link uk-margin-top" href="/signup">
+        Register
+    </a>
+ </div>
+
+{% endblock %}
