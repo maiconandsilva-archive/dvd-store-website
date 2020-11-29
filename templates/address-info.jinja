@@ -1,0 +1,26 @@
+{% extends "_account.jinja" %}
+
+{% from "_formhelpers.jinja" import r_info_from_str %}
+{% from "_formhelpers.jinja" import r_info_field %}
+
+{% set title = "Account" %}
+{% set account_title = "Address Information" %}
+{% block TITLE %}{{ title }}{% endblock %}
+
+{%block ACCOUNT_TITLE%}
+    {{account_title}}
+{% endblock %}
+
+{% block ACCOUNT_TABLE %}
+            <table class="uk-table uk-table-middle uk-table-divider uk-text-left">
+                <tbody class="uk-column-1-2">
+                    {{ r_info_field(form.city) }}
+                    {{ r_info_field(form.state) }}
+                    {{ r_info_field(form.country) }}
+                    {{ r_info_field(form.address1) }}
+                    {{ r_info_field(form.address2) }}
+                    {{ r_info_field(form.zip) }}
+                <tbody>
+            </table>
+{% endblock %}
+

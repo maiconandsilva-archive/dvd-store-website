@@ -1,0 +1,27 @@
+{% extends "_account.jinja" %}
+
+{% from "_formhelpers.jinja" import r_info_from_str %}
+{% from "_formhelpers.jinja" import r_info_field %}
+
+{% set title = "Account" %}
+{% set account_title = "Personal Information" %}
+
+{% block TITLE %}{{ title }}{% endblock %}
+
+{% block ACCOUNT_TITLE%}
+{{account_title}}
+{%endblock%}
+  
+{% block ACCOUNT_TABLE%}
+<table class="uk-table uk-table-middle uk-table-divider uk-text-left">
+    <tbody class="uk-column-1-2">
+        {{ r_info_from_str(form.email.label, mask(form.email.data, pattern=mask.EMAIL)) }}
+        {{ r_info_from_str(form.phone.label, form.phone.data and mask(form.phone.data.e164, 4, 2)) }}
+        {{ r_info_field(form.firstname) }}
+        {{ r_info_field(form.lastname) }}
+        {{ r_info_field(form.income) }}
+        {{ r_info_field(form.age) }}
+        {{ r_info_from_str(form.gender.label, form.gender.object_data.value) }}
+    <tbody>
+</table>
+{%endblock %}

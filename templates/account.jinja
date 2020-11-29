@@ -1,49 +1,36 @@
-{% extends "_base.jinja" %}
+{% extends "_account.jinja" %}
 
 {% from "_formhelpers.jinja" import r_info_from_str %}
 {% from "_formhelpers.jinja" import r_info_field %}
 
 {% set title = "Account" %}
+
 {% block TITLE %}{{ title }}{% endblock %}
 
-{% block CONTENT %}
-<div>
-<div class="uk-grid-small uk-child-width-1-2@s uk-flex-center uk-text-center" uk-grid>
-<div>
+{% block ACCOUNT_TITLE%} 
+    {{ title }}        
+{%endblock%}
 
-<div class="uk-card uk-card-primary uk-card-body">
-<h3 class="uk-card-title">MY ACCOUNT</h3>
+{% block ACCOUNT_TABLE %}
+    <table class="uk-table uk-table-middle uk-table-divider uk-text-left">
+        <tbody class="uk-column-1-2">
+            {{ r_info_from_str(form.email.label, mask(form.email.data, pattern=mask.EMAIL)) }}
+            {{ r_info_from_str(form.phone.label, form.phone.data and mask(form.phone.data.e164, 4, 2)) }}
+            {{ r_info_field(form.firstname) }}
+            {{ r_info_field(form.lastname) }}
+            {{ r_info_field(form.income) }}
+            {{ r_info_field(form.age) }}
+            {{ r_info_from_str(form.gender.label, form.gender.object_data.value) }}
+            {{ r_info_field(form.city) }}
+            {{ r_info_field(form.state) }}
+            {{ r_info_field(form.country) }}
+            {{ r_info_field(form.address1) }}
+            {{ r_info_field(form.address2) }}
+            {{ r_info_field(form.creditcard) }}
+            {{ r_info_field(form.zip) }}
+            {{ r_info_field(form.creditcardexpiration) }}
+        <tbody>
+    </table>
+{%endblock %}
 
-<table class="uk-table uk-table-middle uk-table-divider uk-text-left">
-    <tbody>
-    {{ r_info_from_str(form.email.label, mask(form.email.data, pattern=mask.EMAIL)) }}
-    {{ r_info_from_str(form.phone.label, form.phone.data and mask(form.phone.data.e164, 4, 2)) }}
-    {{ r_info_field(form.firstname) }}
-    {{ r_info_field(form.lastname) }}
-    {{ r_info_field(form.income) }}
-    {{ r_info_field(form.city) }}
-    {{ r_info_field(form.state) }}
-    {{ r_info_from_str(form.gender.label, form.gender.object_data.value) }}
-    {{ r_info_field(form.country) }}
-    {{ r_info_field(form.address1) }}
-    {{ r_info_field(form.creditcard) }}
-    {{ r_info_field(form.age) }}
-    {{ r_info_field(form.zip) }}
-    {{ r_info_field(form.address2) }}
-    {{ r_info_field(form.creditcardexpiration) }}
-    <tbody>
-</table>
 
-<form class="uk-display-inline" action="{{ url_for('data-report') }}" method="post">
-    {{ form.csrf_token }}
-    <button class="uk-button uk-button-primary" type="submit">Download My Data</button>
-</form>
-
-<form class="uk-display-inline" action="{{ url_for('account-delete') }}">
-    {{ form.csrf_token }}
-    <button class="uk-button uk-button-danger" type="submit">Delete My Account</button>
-</form>
-
-</div>
-</div>
-{% endblock %}
