@@ -26,6 +26,7 @@ class SignupForm(ModelForm):
             'creditcard', 'creditcardexpiration',
             'username', 'password',
         ]
+        optional_validator = None
 
 class UpdateAccountForm(SignupForm):
     class Meta:

@@ -29,7 +29,12 @@ img.value-img {
 .header {
     margin-top: 16rem;
 }
-.value-img {
+.feather, .value-img {
     margin-bottom: 1rem;
+    color: rgb(51, 153, 255);
 }
+}
+
+.button.button-primary {
+    border-radius: 0 !important;
 }

@@ -4,6 +4,42 @@
 {% block TITLE %}{{ title }}{% endblock %}
 {% block FORM_TITLE %}{{ title }}{% endblock %}
 
+
+{% block FORM_CONTENT %}
+
+{{ render_field(form.firstname, "uk-input", "uk-form-danger",
+    placeholder=form.firstname.label.text|title, value=form.firstname.data or "") }}
+{{ render_field(form.lastname, "uk-input", "uk-form-danger",
+    placeholder=form.lastname.label.text|title, value=form.lastname.data or "") }}
+{{ render_field(form.age, "uk-input", "uk-form-danger",
+    placeholder=form.age.label.text|title, value=form.age.data or "") }}
+
+{{ render_field(form.gender, "uk-input", "uk-form-danger",
+    placeholder=form.gender.label.text|title, value=form.gender.data or "") }}
+
+{{ render_field(form.email, "uk-input", "uk-form-danger",
+    placeholder=form.email.label.text|title, value=form.email.data or "") }}
+{{ render_field(form.phone, "uk-input", "uk-form-danger",
+    placeholder=form.phone.label.text|title, value=form.phone.data or "") }}
+{{ render_field(form.password, "uk-input", "uk-form-danger",
+    placeholder=form.password.label.text|title, value=form.password.data or "") }}
+
+{{ render_field(form.country, "uk-input", "uk-form-danger",
+    placeholder=form.country.label.text|title, value=form.country.data or "") }}
+{{ render_field(form.zip, "uk-input", "uk-form-danger",
+    placeholder=form.zip.label.text|title, value=form.zip.data or "") }}
+{{ render_field(form.state, "uk-input", "uk-form-danger",
+    placeholder=form.state.label.text|title, value=form.state.data or "") }}
+{{ render_field(form.city, "uk-input", "uk-form-danger",
+    placeholder=form.city.label.text|title, value=form.city.data or "") }}
+{{ render_field(form.address1, "uk-input", "uk-form-danger",
+    placeholder=form.address1.label.text|title, value=form.address1.data or "") }}
+{{ render_field(form.address2, "uk-input", "uk-form-danger",
+    placeholder=form.address2.label.text|title, value=form.address2.data or "") }}
+
+{% endblock %}
+
+
 {% block AFTER_FORM_CONTENT %}
 <div class="uk-flex uk-flex-column">
     <button class="uk-button uk-button-primary" type="submit">

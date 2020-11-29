@@ -1,5 +1,6 @@
 # THIRD PARTY IMPORTS
-from flask.globals import g, session
+from flask.globals import g, request, session
+from werkzeug.utils import redirect
 
 # LOCAL IMPORTS
 from app import app
@@ -18,6 +19,13 @@ def assign_loggedin_customer():
         else:
             session.clear()
 
+
+@app.before_request
+def upgrade_http_request():
+    if app.config.get('FLASK_ENV') == 'production' and not request.is_secure:
+        url = request.url.replace('http://', 'https://')
+        return redirect(url, code=301)
+    
 
 @app.context_processor
 def utility_processor():
