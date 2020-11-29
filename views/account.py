@@ -41,6 +41,61 @@ class AccountView(MethodViewWrapper, RequiredLoginViewMixin):
         del form.username
         return super().get(form=form)
 
+class AccountPersonalInfoView(MethodViewWrapper, RequiredLoginViewMixin):
+    """Tela para visualizar dados do Customer"""
+
+    def get(self):
+        form = UpdateAccountForm(obj=g.user)
+        del form.password
+        del form.username
+        del form.country
+        del form.zip
+        del form.city
+        del form.state
+        del form.address1
+        del form.address2
+        del form.creditcard
+        del form.creditcardexpiration
+        return super().get(form=form)
+
+class AccountAddressInfoView(MethodViewWrapper, RequiredLoginViewMixin):
+    """Tela para visualizar dados do Customer"""
+    def get(self):
+        form = UpdateAccountForm(obj=g.user)
+        del form.password
+        del form.username
+        del form.creditcard
+        del form.creditcardexpiration
+        del form.email
+        del form.phone
+        del form.firstname
+        del form.lastname
+        del form.income
+        del form.age
+        del form.gender
+        return super().get(form=form)
+
+class AccountPaymentsInfoView(MethodViewWrapper, RequiredLoginViewMixin):
+    """Tela para visualizar dados do Customer"""
+    def get(self):
+        form = UpdateAccountForm(obj=g.user)
+        del form.password
+        del form.username
+        del form.email
+        del form.phone
+        del form.firstname
+        del form.lastname
+        del form.income
+        del form.age
+        del form.gender
+        del form.country
+        del form.zip
+        del form.city
+        del form.state
+        del form.address1
+        del form.address2
+        return super().get(form=form)
+
 
 class AccountDelete(MethodViewWrapper, RequiredLoginViewMixin):
     """Rota para anonimizar Customer"""
