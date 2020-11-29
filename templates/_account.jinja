@@ -12,7 +12,7 @@
 
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav uk-flex-between uk-logo">
-                <h1 class="uk-heading-bullet"><span>Account</span></h1>
+                <h1 class="uk-heading-bullet" ><span><a href="{{url_for('account')}}" class="uk-link-heading uk-button-text"> Account </a></span></h1>
             </ul>
         </div>
 
@@ -24,12 +24,10 @@
                 </button>
             </form>
 
-            <form class="uk-margin-right" action="{{ url_for('account-delete') }}">
-                {{ form.csrf_token }}
-                <button class="uk-button uk-button-text" type="submit" uk-tooltip="Delete your data!">
-                    <span uk-icon="icon: trash; ratio: 2"></span>
-                </button>
-            </form>
+
+            <button class="uk-button uk-button-text uk-margin-right" type="button" uk-tooltip="Delete your data!" uk-toggle="target: #my-id">
+                <span uk-icon="icon: trash; ratio: 2"></span>
+            </button>
 
             <form class="uk-margin-right" action="{{ url_for('signout') }}" method="get">
                 {{ form.csrf_token }}
@@ -77,5 +75,21 @@
             {% endblock %}
         </div>
 
+    </div>
+
+    <!-- This is the modal -->
+    <div id="my-id" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+            <h2 class="uk-modal-title">Delete Confirmation</h2>
+            <p>Do you really want to delete your account and data related to it?</p>
+            <p class="uk-text-right">
+                <form class="uk-flex" action="{{ url_for('account-delete') }}">
+                {{ form.csrf_token }}
+                    <button class="uk-button uk-button-default uk-modal-close uk-margin-right" type="button">Cancel</button>
+                    <button class="uk-button uk-button-danger" type="submit">Confirm</button>
+                </form>
+
+            </p>
+        </div>
     </div>
 {% endblock %}
