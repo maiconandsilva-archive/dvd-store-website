@@ -23,7 +23,7 @@
         <div class="uk-position-center-right uk-margin-large-right uk-animation-fade" >
             <div class="uk-text-center uk-align-center uk-card-medium uk-card-default uk-card-hover uk-card-primary uk-card-body uk-padding">
                 <h3 class="uk-card-title">{% block FORM_TITLE %}{% endblock %}</h3>
-                <form method="post">
+                <form method="post" id="form">
                     {% block BEFORE_FORM_CONTENT %}{% endblock %}
                     {{ form.hidden_tag() }}
                     <div class="uk-column-1-2 uk-margin-small-bottom"> 
