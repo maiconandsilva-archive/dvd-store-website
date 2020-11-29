@@ -1,20 +1,11 @@
 # :abcd: Projeto Segurança da Informação 
 [![](https://img.shields.io/badge/python-v3.8-blue)](https://github.com/DevExpress/testcafe) ![](https://img.shields.io/badge/docker%20build-automated-066da5)
 
-> Estudo de caso sobre Anonimização de Dados sensíveis dos clientes da Dell Store usando [PostgreSQL](https://www.postgresql.org/)
 
-**Membros do grupo**
-- Maicon Mauricio - [GitHub](https://github.com/maiconandsilva) 
-- André Rodrigues - [GitHub](https://github.com/Andrerodrigues0018) 
-- Willian Barreto - [GitHub](https://github.com/WilliamBarretoH) 
-- Gabriel Costas  - [GitHub](https://github.com/c0sta) 
-- Raphael Victor  - [GitHub](https://github.com/raphariibeira) 
-- Gustavo Robert  - [GitHub](https://github.com/gu-robert) 
-- Pablo Gabriel   - [GitHub](https://github.com/PGabriel-MB) 
-- Mauro Toshiuki  - [GitHub](https://github.com/maurosakugawa) 
+## Visao geral
 
+Esse projeto tem o intuito de demonstrar a aplicação de técnicas de anonimizacao para um banco de dado, ideal para uma empresa seguindo as regras da Lei Geral de Proteção de Dados, fazendo com seja possível o armazenamento e a exclusão dos dados sensíveis dos clientes sem a necessidade da exclusão de dados importantes para a empresa, como informações de vendas e possiveis estatisticas.  
 
-Esse projeto tem o intuito de demonstrar a aplicação de técnicas para um banco de dados anonimizado ideal para uma empresa, seguindo as regras da Lei Geral de Proteção de Dados, fazendo com seja possível a exclusão dos dados sensíveis dos clientes sem a necessidade da exclusão de dados importantes para a empresa, como informações de vendas. Por meio de uma API que simule tal funcionamento.  
 ## :dart: Objetivos
 
 Projeto designado à matéria de Segurança da Informação, lecionado pelo professor Eduardo Sakaue, trouxe consigo o desafio de implementar uma solução para tópicos abordados na Lei Geral de Proteção de Dados (LGPD).
@@ -35,9 +26,19 @@ Essa lei surge com a finalidade de proteger direitos fundamentais, como:
 
 > Estudo de caso sobre Anonimização de Dados sensíveis dos clientes da Dell Store usando [PostgreSQL](https://www.postgresql.org/) 
 
-Seguindo um conceito para maior seguranca dos dados, nesse projeto foi feito uma pseudoanonimizacao na base de dados, que consiste em separar dados sensiveis do cliente dos dados de estatisticas para a empresa, armazenando-os em bancos diferentes resultando em mais seguranca na base de dados dos clientes, pois o mesmo conta com mais criptografia. 
+- Seguindo um conceito para maior seguranca dos dados, nesse projeto foi feito uma pseudoanonimizacao na base de dados, que consiste em separar dados sensiveis do cliente dos dados de estatisticas para a empresa, armazenando-os em bancos diferentes resultando em mais seguranca na base de dados dos clientes, pois o mesmo conta com criptografia AES.
 
-Com isso e possivel acessar e alterar dados estatisticos sem a necessidade de violar a privacidade dos clientes. Tambem, facilitando a exclusao dos dados do cliente, quando o mesmo a solicita, pois conseguimos desvincular seus dados sensiveis dos dados importantes para a empresa.  
+**Imagem de exemplo:**
+
+![Exemplo](https://github.com/WilliamBarretoH/photos/blob/master/pseudo.jpeg)
+
+- Com isso e possivel acessar e alterar dados estatisticos sem a necessidade de violar a privacidade dos clientes. 
+
+- Pensando tambem na exclusao dos dados de um cliente, realizamos uma anonimizacao, facilitando essa requesicao. Quando o mesmo a solicita, desvinculamos ou eliminamos dados que possam identificar um titular desses dados.
+
+**Imagem de exemplo:**
+
+![Anon](https://github.com/WilliamBarretoH/photos/blob/master/anon.jpeg)
 
 ## :pushpin: Demonstração
 
@@ -136,11 +137,14 @@ _A partir da sprint 5 o gerenciamento das tarefas mudou para o [Kanban](https://
 Consulte o arquivo [LICENSE](LICENSE) para obter os direitos e limitações da licença (FATEC).
 
 ## Membros do grupo 
-- Maicon Mauricio - [GitHub](https://github.com/maiconandsilva) 
-- André Rodrigues - [GitHub](https://github.com/Andrerodrigues0018) 
-- Willian Barreto - [GitHub](https://github.com/WilliamBarretoH) 
-- Gabriel Costa  - [GitHub](https://github.com/c0sta) 
-- Raphael Victor  - [GitHub](https://github.com/raphariibeira) 
-- Gustavo Robert  - [GitHub](https://github.com/gu-robert) 
-- Pablo Gabriel   - [GitHub](https://github.com/PGabriel-MB) 
-- Mauro Toshiuki  - [GitHub](https://github.com/maurosakugawa) 
+
+Nome | Github
+-----|-----------
+Maicon Mauricio | [Acessar](https://github.com/maiconandsilva) 
+André Rodrigues | [Acessar](https://github.com/Andrerodrigues0018) 
+Willian Barreto | [Acessar](https://github.com/WilliamBarretoH) 
+Gabriel Costa  | [Acessar](https://github.com/c0sta) 
+Raphael Victor  | [Acessar](https://github.com/raphariibeira) 
+Gustavo Robert  | [Acessar](https://github.com/gu-robert) 
+Pablo Gabriel   | [Acessar](https://github.com/PGabriel-MB) 
+Mauro Toshiuki  | [Acessar](https://github.com/maurosakugawa) 
