@@ -37,8 +37,6 @@ class AccountView(MethodViewWrapper, RequiredLoginViewMixin):
 
     def get(self):
         form = UpdateAccountForm(obj=g.user)
-        del form.password
-        del form.username
         return super().get(form=form)
 
 

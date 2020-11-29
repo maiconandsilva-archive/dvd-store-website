@@ -14,8 +14,8 @@
 {% macro r_info_from_str(field_label, field_value) %}
   <div class="uk-margin">
     <tr>
-      <td>{{ field_label|upper | safe }}</td>
-      <td>{{ field_value or "" }}</td>
+      <td>{{ field_label|upper|safe }}</td>
+      <td>{{ field_value or '' }}</td>
     </tr>
   </div>
 {% endmacro %}

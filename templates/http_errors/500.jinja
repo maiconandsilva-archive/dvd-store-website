@@ -1,6 +1,6 @@
 {% extends "http_errors/fallback.jinja" %}
 
-{% block TITLE %} ERRO | 500 {% endblock %}
+{% block TITLE %} ERROR | 500 {% endblock %}
 
 {% block error_image %}
     <img class="uk-align-center uk-margin-xlarge-top" alt="" height="30%" width="30%" src="{{ url_for('static', filename='img/error_500.svg') }}">
@@ -11,6 +11,6 @@
 {% block error_message %}
 
     <h1 class="uk-heading-small uk-text-center">
-        Desculpe! Houve um erro interno no servidor
+        Sorry! We're having some issues
     </h1>
 {% endblock %}
