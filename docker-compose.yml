@@ -57,6 +57,12 @@ services:
     volumes:
       - ./:/app:cached
 
+  smtp:
+    image: mailhog/mailhog
+    ports:
+      - 1025:1025
+      - 8025:8025
+
 secrets:
   db_password:
     file: ./db_password
