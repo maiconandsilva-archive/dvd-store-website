@@ -4,7 +4,7 @@
 
 ## 👁️‍🗨️ Visão geral<a name="visao-geral"></a>
 
-Este projeto tem o intuito de demonstrar a aplicação de técnicas de pseudonimização para um sistema, ideal para uma empresa seguindo as regras da Lei Geral de Proteção de Dados, desta forma, permitindo acessar e alterar dados estatísticos sem a necessidade de violar a privacidade dos clientes.
+Este projeto tem o intuito de demonstrar a aplicação de técnicas de pseudonimização para um sistema, ideal para uma empresa seguindo as regras da Lei Geral de Proteção de Dados, desta forma permitindo acessar e alterar dados estatísticos sem a necessidade de violar a privacidade dos clientes.
 
 
 #### 📖 Para mais informações sobre este projeto acesse nossa [Wiki](https://github.com/maiconandsilva/LGPD-compliant-website/wiki).
