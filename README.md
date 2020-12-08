@@ -1,10 +1,11 @@
 # :abcd: Projeto Segurança da Informação 
-[![](https://img.shields.io/badge/python-v3.8-blue)](https://github.com/DevExpress/testcafe) ![](https://img.shields.io/badge/docker%20build-automated-066da5)
+[![](https://img.shields.io/badge/python-v3.8-blue)](#) [![](https://img.shields.io/badge/docker%20build-automated-066da5)]()
 
 
 ## 👁️‍🗨️ Visão geral<a name="visao-geral"></a>
 
-Esse projeto tem o intuito de demonstrar a aplicação de técnicas de anonimização para um banco de dado, ideal para uma empresa seguindo as regras da Lei Geral de Proteção de Dados, fazendo com seja possível o armazenamento e a exclusão dos dados sensíveis dos clientes sem a necessidade da exclusão de dados importantes para a empresa, como informações de vendas e possíveis estatísticas.  
+Este projeto tem o intuito de demonstrar a aplicação de técnicas de pseudonimização para um sistema, ideal para uma empresa seguindo as regras da Lei Geral de Proteção de Dados, desta forma, permitindo acessar e alterar dados estatísticos sem a necessidade de violar a privacidade dos clientes.
+
 
 #### 📖 Para mais informações sobre este projeto acesse nossa [Wiki](https://github.com/maiconandsilva/LGPD-compliant-website/wiki).
 
@@ -12,7 +13,8 @@ Esse projeto tem o intuito de demonstrar a aplicação de técnicas de anonimiza
 
 ## :cd: Dependências
 
-Esta versão requer o Docker e Docker-Compose. Se você está utilizando o Windows [clique aqui](https://docs.docker.com/docker-for-windows/install/).
+Esta versão requer o [Docker e Docker-Compose](https://docs.docker.com/get-docker/).
+Se você está utilizando o Windows [clique aqui](https://docs.docker.com/docker-for-windows/install/).
 
 ``` bash
 docker-compose version 1.27.4
