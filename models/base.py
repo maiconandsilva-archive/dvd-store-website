@@ -20,3 +20,14 @@ class BaseModel(Model):
         app.db.session.add(self)
         app.db.session.commit()
         
+    def delete(self):
+        app.db.session.delete(self)
+        app.db.session.commit()
+        
+    @classmethod
+    def from_form(cls, form):
+        """Retorna um novo objeto a partir de um form"""
+        instance = cls()
+        form.populate_obj(instance)
+        return instance
+        

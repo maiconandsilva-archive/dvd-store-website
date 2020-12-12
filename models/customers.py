@@ -1,7 +1,6 @@
 # THIRD PARTY IMPORTS
-from flask.globals import request
+from models.isolated.customer_personal_info import CustomerPersonalInfo
 from datetime import datetime
-from sqlalchemy.orm import backref
 import sqlalchemy_utils as su
 
 # LOCAL IMPORTS
@@ -22,21 +21,8 @@ class Customers(db.Model):
     ]
     
     customerid = db.Column(db.Integer, primary_key=True)
-    firstname = db.Column(db.String(50), info={'anonymize': True})
-    lastname = db.Column(db.String(50), info={'anonymize': True})
-    address1 = db.Column(db.String(50), info={'anonymize': True})
-    address2 = db.Column(db.String(50), info={'anonymize': True})
-    city = db.Column(db.String(50), info={'anonymize': True})
     state = db.Column(db.String(50))
-    zip = db.Column(db.Integer, info={'anonymize': True})
     country = db.Column(su.CountryType)
-    email = db.Column(customtype.EmailType(50), unique=True, info={'anonymize': True})
-    phone = db.Column(su.PhoneNumberType(max_length=50), unique=True)
-    creditcardtype = db.Column(db.Integer)
-    creditcard = db.Column(db.String(50), info={'anonymize': True})
-    creditcardexpiration = db.Column(db.String(50), info={'anonymize': True})
-    username = db.Column(db.String(50), info={'anonymize': True})
-    password = db.Column(customtype.PasswordType(schemes=['pbkdf2_sha512']))
     age = db.Column(db.Integer)
     income = db.Column(db.Integer)
     gender = db.Column(su.ChoiceType(GENDERS, impl=db.String(1)))
@@ -46,21 +32,8 @@ class Customers(db.Model):
     @property
     def is_active(self):
         return self.deleted_at is None
-  
-    @classmethod
-    def from_form(cls, form):
-        """Retorna um novo Customer a partir de um form"""
-        customer = cls()
-        form.populate_obj(customer)
-        return customer
 
-    def anonymized(self):
-        """Anonimiza informacoes que identificam uma pessoa"""
-        self._deleted_at = datetime.now()
-        self.phone = self.phone and mask(self.phone.e164[1:], 5, 0)
-        self.password = None
-
-        for column in self.__table__.columns:
-            if column.info.get('anonymize'):
-                setattr(self, column.name, None)
+    def inactivated(self):
+        """Atualiza status usuário como deletado"""
+        self.deleted_at = datetime.now()
         return self

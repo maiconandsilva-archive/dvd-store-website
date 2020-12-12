@@ -1,12 +1,12 @@
 FROM postgres as dellstore
 
-ADD https://git.io/JTdKr /docker-entrypoint-initdb.d/dellstore.sql
-RUN chmod 744 /docker-entrypoint-initdb.d/dellstore.sql
+# ADD https://git.io/JTdKr /docker-entrypoint-initdb.d/dellstore.sql
+# RUN chmod 744 /docker-entrypoint-initdb.d/dellstore.sql
 
 FROM postgres as dellstore_isolated
 
-ADD https://git.io/JTdKZ /docker-entrypoint-initdb.d/dellstore_isolated.sql
-RUN chmod 744 /docker-entrypoint-initdb.d/dellstore_isolated.sql
+# ADD https://git.io/JTdKZ /docker-entrypoint-initdb.d/dellstore_isolated.sql
+# RUN chmod 744 /docker-entrypoint-initdb.d/dellstore_isolated.sql
 
 FROM python:3.8 AS backend
 ARG PYTHON_DEBUG

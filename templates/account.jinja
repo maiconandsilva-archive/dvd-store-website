@@ -78,9 +78,9 @@
                     {{ r_info_from_str(form.phone.label, form.phone.data and mask(form.phone.data.e164, 4, 2)) }}
                     {{ r_info_field(form.firstname) }}
                     {{ r_info_field(form.lastname) }}
-                    {{ r_info_field(form.income) }}
-                    {{ r_info_field(form.age) }}
-                    {{ r_info_from_str(form.gender.label, form.gender.object_data.value) }}
+                    {{ r_info_field(form.more.income) }}
+                    {{ r_info_field(form.more.age) }}
+                    {{ r_info_from_str(form.more.gender.label, form.more.gender.object_data.value) }}
                 </tbody>
             </table>
         </div>
@@ -92,8 +92,8 @@
             <table class="uk-table uk-table-middle uk-table-divider uk-text-left">
                 <tbody class="uk-column-1-2">
                     {{ r_info_field(form.city) }}
-                    {{ r_info_field(form.state) }}
-                    {{ r_info_field(form.country) }}
+                    {{ r_info_field(form.more.state) }}
+                    {{ r_info_field(form.more.country) }}
                     {{ r_info_field(form.address1) }}
                     {{ r_info_field(form.address2) }}
                     {{ r_info_field(form.zip) }}
