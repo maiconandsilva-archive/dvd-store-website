@@ -3,7 +3,9 @@ from flask import request, redirect, url_for, flash, session
 from flask.globals import g
 from functools import wraps
 from multiprocessing import Process
+from collections import namedtuple
 import re
+import os
 
 # LOCAL IMPORTS
 import app
@@ -85,6 +87,8 @@ mask = _Mask()
 class SecretClient:
     """Dummy class for saving keys in a local file instead of Azure"""
     
+    Secret =  namedtuple('Secret', ('value',))
+    
     def __init__(self, file, *args, **kwargs):
         self.file = file
     
@@ -102,7 +106,7 @@ class SecretClient:
             for line in file:
                 idmatches, _cid, key = self.__idmatches(line, customerid)
                 if idmatches:
-                    return key.rstrip()
+                    return self.Secret(key.rstrip())
             else:
                 raise KeyError('No keys found in file %s '
                                 'for customerid %s' % (self.file, customerid))
@@ -116,9 +120,6 @@ class SecretClient:
                 if not self.__idmatches(line, customerid)[0]:
                     file.write(line)
             file.truncate()
-    
-    def purge_deleted_secret(self, customerid, **kwargs):
-        pass
 
 
 def store_key_id(customerid):
@@ -130,4 +131,3 @@ def store_key_id(customerid):
 
 def delete_key_id(customerid):
     app.secret_vault_client.begin_delete_secret(customerid)
-    app.secret_vault_client.purge_deleted_secret(customerid)
