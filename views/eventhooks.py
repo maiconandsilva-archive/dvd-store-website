@@ -20,15 +20,7 @@ def assign_loggedin_customer():
         if customer is not None and customer.more.is_active:
                 g.user = customer
         else:
-            session.clear()
-
-
-@app.before_request
-def upgrade_http_request():
-    if app.config.get('FLASK_ENV') == 'production' and not request.is_secure:
-        url = request.url.replace('http://', 'https://')
-        return redirect(url, code=301)
-    
+            session.clear()    
 
 @app.context_processor
 def utility_processor():

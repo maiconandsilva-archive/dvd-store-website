@@ -76,7 +76,7 @@ class Signin(FormMethodView, RequiredLoggedoutViewMixin):
                     customer.save()
                 session['customerid'] = customer.customerid
                 session['cryptkey'] = \
-                    app.secret_vault_client.get_secret(customer.customerid)
+                    app.secret_vault_client.get_secret(customer.customerid).value
                 return redirect(url_for(AccountView.ROUTE))
         
         flash("Email or Password doesn't match")

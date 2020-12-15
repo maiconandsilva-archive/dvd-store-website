@@ -19,8 +19,6 @@ services:
   db:
     image: postgres
     restart: always
-    ports:
-      - 5432
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
@@ -31,8 +29,6 @@ services:
   db_isolated:
     image: postgres
     restart: always
-    ports:
-      - 5432
     environment:
       POSTGRES_DB: ${ISOLATED_DB_NAME}
       POSTGRES_USER: ${ISOLATED_DB_USER}
