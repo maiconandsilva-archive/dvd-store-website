@@ -130,4 +130,3 @@ def store_key_id(customerid):
 
 def delete_key_id(customerid):
     app.secret_vault_client.begin_delete_secret(customerid)
-    app.secret_vault_client.purge_deleted_secret(customerid)

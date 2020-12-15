@@ -22,14 +22,6 @@ def assign_loggedin_customer():
         else:
             session.clear()
 
-
-@app.before_request
-def upgrade_http_request():
-    if app.config.get('FLASK_ENV') == 'production' and not request.is_secure:
-        url = request.url.replace('http://', 'https://')
-        return redirect(url, code=301)
-    
-
 @app.context_processor
 def utility_processor():
     """Pass mask function to Jinja"""

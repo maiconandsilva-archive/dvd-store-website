@@ -17,6 +17,7 @@ if __name__ == '__main__':
     db.create_all()
     
     from debugger import initialize_flask_server_debugger_if_needed
+    import os
     
     initialize_flask_server_debugger_if_needed()
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 5000)))
