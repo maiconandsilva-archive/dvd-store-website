@@ -40,3 +40,7 @@ in:
 
 do:
 	$(DOCKER_COMPOSE) $(call args,"")
+
+deploy:
+	heroku container:push web
+	heroku container:release web

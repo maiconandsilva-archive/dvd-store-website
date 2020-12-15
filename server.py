@@ -2,6 +2,8 @@
 
 # LOCAL IMPORTS
 from app import app, db
+from models import orders, products, customers
+from models.isolated import customer_personal_info
 from views import *
 
 
