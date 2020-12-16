@@ -13,7 +13,19 @@ class Settings:
     APP_TEMPLATE_EXT = '.jinja' # Custom
 
     SECRET_KEY = os.urandom(32)
-
+    
+    CSP = {
+        'default-src': "'self'",
+        'script-src': [
+            "'self'",
+            'cdn.jsdelivr.net',
+        ],
+        'style-src': [
+            "'self'",
+            'cdn.jsdelivr.net',
+        ]
+    }
+    
     def _database_uri(self, uri, password):
         return uri.format(**os.environ)
 

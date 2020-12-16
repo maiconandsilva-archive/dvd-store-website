@@ -21,15 +21,16 @@ form, .form {
     overflow: hidden !important;
 }
 
+/* show contents only for selected tab */
 .hidden {
 	display: none;
 }
 
-/* show contents only for selected tab */
 .tab {
     display: none;
 }
 
-#personal-info {
+.tab.active {
     display: block;
 }
+/* show contents only for selected tab */

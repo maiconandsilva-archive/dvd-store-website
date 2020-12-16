@@ -1,6 +1,7 @@
 ./sqltools_*
-./db_password
-./db_isolated_password
+isolated_db_keys.txt
+.prod.env
+docker-compose.override.yml
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,visualstudiocode,pycharm
@@ -246,7 +247,7 @@ dmypy.json
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
+# !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json

@@ -2,7 +2,7 @@
 from flask_sqlalchemy.model import Model
 
 # LOCAL IMPORTS
-import app
+import extensions as exts
 
 
 class BaseModel(Model):
@@ -17,12 +17,12 @@ class BaseModel(Model):
         return type(self)
     
     def save(self):
-        app.db.session.add(self)
-        app.db.session.commit()
+        exts.db.session.add(self)
+        exts.db.session.commit()
         
     def delete(self):
-        app.db.session.delete(self)
-        app.db.session.commit()
+        exts.db.session.delete(self)
+        exts.db.session.commit()
         
     @classmethod
     def from_form(cls, form):

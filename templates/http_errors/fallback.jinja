@@ -1,7 +1,7 @@
 {% extends "_base.jinja" %}
 
 {% block CONTENT %}
-<a href="{{ url_for('signin') }}">
+<a href="{{ url_for('app.signin') }}">
 {% block error_image %}
     <img class="uk-align-center uk-margin-xlarge-top" alt="" height="30%" width="30%" src="{{ url_for('static', filename='img/general_error.svg') }}">
 {% endblock %}

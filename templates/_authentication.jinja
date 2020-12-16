@@ -1,6 +1,6 @@
 {% extends "_base.jinja" %}
 
-{% from "_formhelpers.jinja" import render_field %}
+{% from "_formhelpers.jinja" import r_input %}
 
 {% block CONTENT %}
 
@@ -29,8 +29,7 @@
                     <div class="uk-column-1-2 uk-margin-small-bottom"> 
                         {% block FORM_CONTENT %}
                             {% for field in form %}
-                                {{ render_field(field, "uk-input", "uk-form-danger",
-                                    placeholder=field.label.text|title, value=field.data or "") }}
+                                {{ r_input(field) }}
                             {% endfor %}
                         {% endblock %}
                     </div>

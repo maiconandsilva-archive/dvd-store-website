@@ -7,35 +7,19 @@
 
 {% block FORM_CONTENT %}
 
-{{ render_field(form.firstname, "uk-input", "uk-form-danger",
-    placeholder=form.firstname.label.text|title, value=form.firstname.data or "") }}
-{{ render_field(form.lastname, "uk-input", "uk-form-danger",
-    placeholder=form.lastname.label.text|title, value=form.lastname.data or "") }}
-{{ render_field(form.more.age, "uk-input", "uk-form-danger",
-    placeholder=form.more.age.label.text|title, value=form.more.age.data or "") }}
-
-{{ render_field(form.more.gender, "uk-input", "uk-form-danger",
-    placeholder=form.more.gender.label.text|title, value=form.more.gender.data or "") }}
-
-{{ render_field(form.email, "uk-input", "uk-form-danger",
-    placeholder=form.email.label.text|title, value=form.email.data or "") }}
-{{ render_field(form.phone, "uk-input", "uk-form-danger",
-    placeholder=form.phone.label.text|title, value=form.phone.data or "") }}
-{{ render_field(form.password, "uk-input", "uk-form-danger",
-    placeholder=form.password.label.text|title, value=form.password.data or "") }}
-
-{{ render_field(form.more.country, "uk-input", "uk-form-danger",
-    placeholder=form.more.country.label.text|title, value=form.more.country.data or "") }}
-{{ render_field(form.zip, "uk-input", "uk-form-danger",
-    placeholder=form.zip.label.text|title, value=form.zip.data or "") }}
-{{ render_field(form.more.state, "uk-input", "uk-form-danger",
-    placeholder=form.more.state.label.text|title, value=form.more.state.data or "") }}
-{{ render_field(form.city, "uk-input", "uk-form-danger",
-    placeholder=form.city.label.text|title, value=form.city.data or "") }}
-{{ render_field(form.address1, "uk-input", "uk-form-danger",
-    placeholder=form.address1.label.text|title, value=form.address1.data or "") }}
-{{ render_field(form.address2, "uk-input", "uk-form-danger",
-    placeholder=form.address2.label.text|title, value=form.address2.data or "") }}
+{{ r_input(form.firstname) }}
+{{ r_input(form.lastname) }}
+{{ r_input(form.more.age) }}
+{{ r_input(form.more.gender) }}
+{{ r_input(form.email) }}
+{{ r_input(form.phone) }}
+{{ r_input(form.password) }}
+{{ r_input(form.more.country) }}
+{{ r_input(form.zip) }}
+{{ r_input(form.more.state) }}
+{{ r_input(form.city) }}
+{{ r_input(form.address1) }}
+{{ r_input(form.address2) }}
 
 {% endblock %}
 
@@ -43,10 +27,10 @@
 {% block AFTER_FORM_CONTENT %}
 <div class="uk-flex uk-flex-column">
     <button class="uk-button uk-button-primary" type="submit">
-        SIGN UP        
+        {{ title }}       
     </button>
 
-    <a class="uk-link uk-margin-top" href="/signin">
+    <a class="uk-link uk-margin-top" href="{{ url_for('app.signin') }}">
         Alrealdy have an account?
     </a>
  </div>

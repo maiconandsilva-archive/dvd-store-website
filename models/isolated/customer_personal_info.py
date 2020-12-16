@@ -1,12 +1,12 @@
 # THIRD PARTY IMPORTS
-from flask.globals import g, session
+from flask.globals import session
 from sqlalchemy_utils.types.encrypted.encrypted_type import FernetEngine
 from cryptography.fernet import Fernet
 import sqlalchemy_utils as su
 
 # LOCAL IMPORTS
-from app import db
-import models.columntypes as ct
+from extensions import db
+from .. import columntypes as ct
 
 
 def _get_customer_personal_info(ColumnType, engine, key):
@@ -27,15 +27,15 @@ def _get_customer_personal_info(ColumnType, engine, key):
         address1 = db.Column(ColumnType(db.String(50), key, engine))
         address2 = db.Column(ColumnType(db.String(50), key, engine))
         city = db.Column(ColumnType(db.String(50), key, engine))
-        zip = db.Column(ColumnType(db.Integer, key, engine))
+        zip = db.Column(ColumnType(db.String(25), key, engine))
         creditcardtype = db.Column(ColumnType(db.Integer, key, engine))
         creditcard = db.Column(ColumnType(db.String(50), key, engine))
         creditcardexpiration = db.Column(ColumnType(db.String(50), key, engine))
         phone = db.Column(ColumnType(
             su.PhoneNumberType(max_length=50), key, engine), unique=True)
         
-        email = db.Column(ct.EmailType(50), unique=True)
-        password = db.Column(ct.PasswordType(schemes=['pbkdf2_sha512']))
+        email = db.Column(su.EmailType(50), unique=True)
+        password = db.Column(su.PasswordType(schemes=['pbkdf2_sha512']))
         more = db.relationship('Customers', primaryjoin=\
             'CustomerPersonalInfo.customerid == Customers.customerid',
             foreign_keys=[customerid])

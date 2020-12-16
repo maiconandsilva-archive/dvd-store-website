@@ -4,10 +4,8 @@ from datetime import datetime
 import sqlalchemy_utils as su
 
 # LOCAL IMPORTS
-from helpers import mask
-from app import db
-import models.columntypes as customtype
-import models.orders # used by SQLAlchemy
+from extensions import db
+from . import orders
 
 
 class Customers(db.Model):
@@ -27,7 +25,7 @@ class Customers(db.Model):
     income = db.Column(db.Integer)
     gender = db.Column(su.ChoiceType(GENDERS, impl=db.String(1)))
     deleted_at = db.Column('deleted_at', db.DateTime)
-    shopping_history = db.relationship('Orders', backref='customer')
+    shopping_history = db.relationship(orders.Orders, backref='customer')
 
     @property
     def is_active(self):

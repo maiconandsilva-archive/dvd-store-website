@@ -1,9 +1,8 @@
 # THIRD PARTY IMPORTS 
-from sqlalchemy.orm import backref
 
 # LOCAL IMPORTS
-from app import db
-import models.products as mp
+from extensions import db
+from . import products as mp
 
 
 class Orders(db.Model):

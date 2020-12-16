@@ -1,7 +1,7 @@
 from views.account import Signin
 from flask.helpers import url_for
 from werkzeug.utils import redirect
-from app import app
+from .blueprint import app
  
 
 @app.route('/')

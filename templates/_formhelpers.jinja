@@ -1,5 +1,4 @@
 {% macro render_field(field, class_, errcclass) %}
-
   {% if not field.errors %}
     {% set errclass = "" %}
   {% endif %}
@@ -11,14 +10,20 @@
   </div>
 {% endmacro %}
 
-{% macro r_info_from_str(field_label, field_value) %}
+{%- macro r_input(form_input) -%}
+{{ render_field(form_input, "uk-input", "uk-form-danger", *varargs,
+      placeholder=form_input.label.text|title, value=form_input.data or "",
+      **kwargs) }}
+{%- endmacro -%}
+
+{%- macro r_info_from_str(field_label, field_value) -%}
   <div class="uk-margin">
     <tr>
-      <td>{{ field_label|upper|safe }}</td>
+      <td class="uk-text-bold">{{ field_label|upper|safe }}</td>
       <td>{{ field_value or '' }}</td>
     </tr>
   </div>
-{% endmacro %}
+{%- endmacro -%}
 
 {% macro r_info_field(field) %}
   {{ r_info_from_str(field.label, field.data) }}

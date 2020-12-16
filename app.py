@@ -1,38 +1,57 @@
 # THIRD PARTY IMPORTS
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import import_string
-from azure.identity import DefaultAzureCredential
-from azure.keyvault.secrets import SecretClient
 import os
+import sys
 
 # LOCAL IMPORTS
-import models.base
-
-# Flask Settings
-
-app = Flask(__name__)
-
-cfg = import_string(os.environ.get('FLASK_APPSETTINGS'))()
-app.config.from_object(cfg)
-
-# SQLAlchemy settings 
-
-db = SQLAlchemy(app, model_class=models.base.BaseModel)
-
-# Azure settings
-if os.environ.get('SECRET_VAULT_URI'):
-    __default_credential = DefaultAzureCredential()
+if os.getcwd() not in sys.path:
+    # For flask run
+    sys.path.insert(0, os.getcwd())
     
-    secret_vault_client = SecretClient(
-        os.environ['SECRET_VAULT_URI'],
-        __default_credential, logging_enable=True)
+import server
+import extensions as exts
+
+
+def init_with(app):
+    """Initialize extensions and funcions with the FLask"""
+    on_production_env = app.config.get('FLASK_ENV') == 'production'
     
-elif app.config.get('FLASK_ENV') != 'production':
-    # Writes key in file for development. No need to create an Azure account
-    import helpers
-    secret_vault_client = helpers.SecretClient(
-        os.environ['SECRET_VAULT_FILE_DEV'])
+    exts.db.init_app(app)
+    exts.talisman.init_app(app,
+        force_https=on_production_env,
+        force_https_permanent=on_production_env,
+        content_security_policy=app.config['CSP'],
+    )
     
-else:
-    raise RuntimeError('Using Key file for storage in production is not allowed')
+    exts.create_tables(app)
+    
+    # The debugger should be the last to be initialized
+    exts.init_debugger(app)
+    
+    
+    
+    
+def create_app(pyconfig=None):
+    app = Flask(__name__)
+    
+    # Flask Settings    
+    cfg = import_string(os.getenv('FLASK_APPSETTINGS'))()
+    app.config.from_object(cfg)
+    
+    if pyconfig:
+        app.config.from_pyfile(pyconfig)
+    
+    # Register all blueprints
+    # All blueprints will be imported from the server.py file
+    app.register_blueprint(server.app)
+    
+    # Flask Extensions
+    init_with(app)
+    
+    return app
+
+
+if __name__ == '__main__':
+    app = create_app()
+    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 5000)))    

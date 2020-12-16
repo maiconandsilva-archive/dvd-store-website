@@ -36,7 +36,7 @@
 
     {{ r_tr(
         orderlink.format(purchase.orderid),
-        purchase.orderdate,
+        purchase.orderdate.strftime('%m/%d/%Y'),
         purchase.netamount,
         purchase.tax,
         purchase.totalamount) }}

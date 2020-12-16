@@ -1,12 +1,10 @@
 # THIRD PARTY IMPORTS
 from models.isolated.customer_personal_info import CustomerPersonalInfo
-from flask.globals import g, request, session
-from werkzeug.utils import redirect
+from flask.globals import g, session
 
 # LOCAL IMPORTS
-from app import app
 from helpers import mask
-from models.customers import Customers
+from .blueprint import app
 
 
 @app.before_request
@@ -20,7 +18,7 @@ def assign_loggedin_customer():
         if customer is not None and customer.more.is_active:
                 g.user = customer
         else:
-            session.clear()    
+            session.clear()
 
 @app.context_processor
 def utility_processor():

@@ -1,87 +1,29 @@
 # THIRD PARTY IMPORTS
-from flask import request, redirect, url_for, flash, session
-from flask.globals import g
-from functools import wraps
+from flask import session
 from multiprocessing import Process
 from collections import namedtuple
 import re
 import os
 
 # LOCAL IMPORTS
-import app
 
 
-def login_required(view):
-    @wraps(view)
-    def wrapper(*args, **kwargs):
-        if g.user is None:
-            flash('Please, sign in first')
-            return redirect(url_for('signin'))
-        return view(*args, **kwargs)
-    return wrapper
+__all__  = ['mask', 'SecreVault']
 
+class Mask:
+    def __init__(self):
+        self.__p = {} # list of registered mask regex patterns
 
-def redirect_if_loggedin(route='account'):
-    def decorator(view):
-        @wraps(view)
-        def wrapper(*args, **kwargs):
-            if session.get('customerid') is not None:
-                return redirect(url_for(route))
-            return view(*args, **kwargs)
-        return wrapper
-    return decorator
+    def __call__(self, pattern_name, data, /, *, mask_char='*', n_mask_char=6):
+        return data and re.sub(self.__p[pattern_name], mask_char * n_mask_char, data)
+    
+    def register(self, name, mask_pattern):
+        self.__p[name] = mask_pattern
 
-
-def commit_on_finish(f):
-    """
-    Adiciona aos objetos atraves da sintaxe 'yield [objeto]' e faz commit.
-    """
-    @wraps(f)
-    def wrapper(self, *args, **kwargs):
-        value = None
-        def innerwrapper():
-            nonlocal value
-            value = yield from f(self, *args, **kwargs)
-
-        # Adiciona todos os objetos da funcao antes de fazer commit
-        for model in innerwrapper():
-            app.db.session.add(model)
-
-        app.db.session.commit()
-        return value
-    return wrapper
-
-
-def form_validated_or_page_with_errors(f):
-    """
-    Inicializa e valida o form.
-    Se houver erros retorna a pagina com as mensagens de erro,
-    se nao retorna a funcao com o form preenchido.
-    """
-    @wraps(f)
-    def wrapper(self, *args, **kwargs):
-        form = kwargs.get('form') or self.FORM(request.form)
-        if not form.validate():
-            return self.get(form=form)
-        
-        kwargs['form'] = form
-        return f(self, *args, **kwargs)
-    return wrapper
-
-class _Mask:
-    EMAIL = r'(?<=[a-z]{2})\w+(?=@)'
-    EMAIL_ANONYMIZATION = r'^\w+(?=@)'
-
-    def __call__(self, data, show_begin=0, show_end=0, /, *,
-            pattern=None, mask_char='*', n_mask_char=6):
-        if data is None:
-            return None
-        if pattern is None:
-            return data[:show_begin] + mask_char * n_mask_char \
-                    + data[len(data) - show_end:]
-        return re.sub(pattern, mask_char * n_mask_char, data)
-
-mask = _Mask()
+mask = Mask()
+mask.register('EMAIL', r'(?<=[a-z]{2})\w+(?=@)')
+mask.register('EMAIL_ANONYMIZATION', r'^\w+(?=@)')
+mask.register('PHONE', r'(?<=\d{3}).+(?=\d{2})')
 
 
 class SecretClient:
@@ -91,14 +33,14 @@ class SecretClient:
     
     def __init__(self, file, *args, **kwargs):
         self.file = file
-    
-    def set_secret(self, customerid, key, **kwargs):
-        with open(self.file, 'a') as f:
-            f.write('%s;%s\n' % (customerid, key))
-    
+
     def __idmatches(self, line, customerid):
         _cid_key = line.split(';')
         return (_cid_key[0] == customerid, *_cid_key)
+        
+    def set_secret(self, customerid, key, **kwargs):
+        with open(self.file, 'a') as f:
+            f.write('%s;%s\n' % (customerid, key))
     
     def get_secret(self, customerid, version=None, **kwargs):
         customerid = str(customerid)
@@ -113,7 +55,7 @@ class SecretClient:
     
     def begin_delete_secret(self, customerid, **kwargs):
         customerid = str(customerid)
-        with open(self.file, "r+") as file:
+        with open(self.file, 'r+') as file:
             alllines = file.readlines()
             file.seek(0)
             for line in alllines:
@@ -122,12 +64,41 @@ class SecretClient:
             file.truncate()
 
 
-def store_key_id(customerid):
-    """Store id;key on an isolated environment"""
-    key = session['cryptkey'].decode()
-    set_secret_task = Process(daemon=True,
-        target=app.secret_vault_client.set_secret, args=(customerid, key))
-    set_secret_task.start()
+class SecretVaultMeta(type):
+    def __init__(self, name, bases, namespace):
+        """
+        If there is no configuration for Azure Key Vault, use a dummy class that
+        writes key in file for development. No need to create an Azure account
+        """
+        from azure.identity import DefaultAzureCredential
+        from azure.core.exceptions import ClientAuthenticationError
+        import azure.keyvault.secrets as azure_secrets
+        
+        super().__init__(name, bases, namespace)
+        
+        try:        
+            _vault_uri = os.environ['SECRET_VAULT_URI']
+            _default_credential = DefaultAzureCredential()
+            self.__client = \
+                azure_secrets.SecretClient(_vault_uri, _default_credential)
+            
+        except (ImportError, KeyError, ValueError, ClientAuthenticationError):
+            _vault_uri = os.environ['SECRET_VAULT_FILE_DEV']
+            self.__client = SecretClient(_vault_uri)
+            
+    def __getattr__(self, attr):
+        return getattr(self.__client, attr)
 
-def delete_key_id(customerid):
-    app.secret_vault_client.begin_delete_secret(customerid)
+
+class SecreVault(metaclass=SecretVaultMeta):
+    @classmethod
+    def store_key_id(cls, customerid):
+        """Store id;key on an isolated environment"""
+        key = session['cryptkey'].decode()
+        set_secret_task = Process(daemon=True,
+            target=cls.set_secret, args=(customerid, key))
+        set_secret_task.start()
+    
+    @classmethod
+    def delete_key_id(cls, customerid):
+        cls.begin_delete_secret(customerid)

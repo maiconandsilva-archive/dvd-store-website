@@ -5,15 +5,7 @@ include .env
 
 BACKEND_SERVICE=backend
 
-DOCKER_COMPOSE=docker-compose -f docker-compose.yml
-PYTHON_MIGRATION=
-
-
-ifeq ($(FLASK_APPSETTINGS),settings.Dev)
-	DOCKER_COMPOSE:=$(DOCKER_COMPOSE) -f docker-compose.dev.yml
-	PYTHON_MIGRATION=$(DOCKER_COMPOSE) exec $(BACKEND_SERVICE) python ./manager.py
-endif
-
+DOCKER_COMPOSE=docker-compose
 args = `arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}}`
 
 

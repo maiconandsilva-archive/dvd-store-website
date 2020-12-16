@@ -8,8 +8,6 @@ services:
     build:
       context: .
       target: backend
-    ports:
-      - 80:5000
     restart: always
     env_file:
       - .env
