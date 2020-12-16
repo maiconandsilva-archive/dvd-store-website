@@ -90,7 +90,6 @@ class SecretClient:
     Secret =  namedtuple('Secret', ('value',))
     
     def __init__(self, file, *args, **kwargs):
-        os.remove(file) # Remove file before starting app
         self.file = file
     
     def set_secret(self, customerid, key, **kwargs):
