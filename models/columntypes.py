@@ -1,4 +1,5 @@
 # THIRD PARTY IMPORTS
+from flask.globals import g
 import six
 import sqlalchemy_utils
 import passlib.exc
@@ -35,3 +36,9 @@ class PasswordType(sqlalchemy_utils.PasswordType):
 class EmailType(sqlalchemy_utils.EmailType):
     def process_result_value(self, value, dialect):
         return value
+
+class EncryptedType(sqlalchemy_utils.EncryptedType):    
+    def process_result_value(self, value, dialect):
+        if g.allowdecryption:
+            return super().process_result_value(value, dialect)
+        return None

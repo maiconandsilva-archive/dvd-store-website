@@ -1,47 +1,51 @@
 # THIRD PARTY IMPORTS
-from flask.globals import session
-from sqlalchemy_utils.types.encrypted.encrypted_type import AesEngine, FernetEngine
-from sqlalchemy_utils import EncryptedType
+from flask.globals import g, session
+from sqlalchemy_utils.types.encrypted.encrypted_type import FernetEngine
 from cryptography.fernet import Fernet
+import sqlalchemy_utils as su
 
 # LOCAL IMPORTS
 from app import db
-from models.customers import Customers
+import models.columntypes as ct
 
 
-def _get_customer_personal_info(model, ColumnType, engine, key):
-    """Generate CustomerPersonalInfo Model with Customers' anonymize columns"""
-
-    AnonymizedColumnsMixin = type('AnonymizedColumnsMixin', (), {
-        column.name: db.Column(ColumnType(column.type, key, engine))
-        for column in model.__table__.columns
-        if column.info.get('anonymize')
-    })
-
-    class CustomerPersonalInfo(AnonymizedColumnsMixin, db.Model):
+def _get_customer_personal_info(ColumnType, engine, key):
+    """
+    Generate CustomerPersonalInfo Model with the same key generation function
+    for every column
+    """
+    class CustomerPersonalInfo(db.Model):
         """
-        Deleted customer's personal info encrypted on an isolated database
+        Customer's personal info encrypted on an isolated database
         """
         __bind_key__ = 'db_isolated'
         __tablename__ = 'customers_personal_info'
 
         customerid = db.Column('customerid', db.Integer, primary_key=True)
-
-        @classmethod
-        def from_customer(cls, customer):
-            self = cls()
-            for column in self.__table__.columns:
-                setattr(self, column.name, getattr(customer, column.name))
-            return self
-
+        firstname = db.Column(ColumnType(db.String(50), key, engine))
+        lastname = db.Column(ColumnType(db.String(50), key, engine))
+        address1 = db.Column(ColumnType(db.String(50), key, engine))
+        address2 = db.Column(ColumnType(db.String(50), key, engine))
+        city = db.Column(ColumnType(db.String(50), key, engine))
+        zip = db.Column(ColumnType(db.Integer, key, engine))
+        creditcardtype = db.Column(ColumnType(db.Integer, key, engine))
+        creditcard = db.Column(ColumnType(db.String(50), key, engine))
+        creditcardexpiration = db.Column(ColumnType(db.String(50), key, engine))
+        phone = db.Column(ColumnType(
+            su.PhoneNumberType(max_length=50), key, engine), unique=True)
+        
+        email = db.Column(ct.EmailType(50), unique=True)
+        password = db.Column(ct.PasswordType(schemes=['pbkdf2_sha512']))
+        more = db.relationship('Customers', primaryjoin=\
+            'CustomerPersonalInfo.customerid == Customers.customerid',
+            foreign_keys=[customerid])
+        
     return CustomerPersonalInfo
 
 
 def _get_key():
-    "Get current key from session or generate it randomly"
-    
-    session['cryptkey'] = session.get('cryptkey', Fernet.generate_key())
-    return session['cryptkey']
+    """Get current key from session or generate it randomly"""
+    return session.setdefault('cryptkey', Fernet.generate_key())
 
-CustomerPersonalInfo = _get_customer_personal_info(
-    Customers, EncryptedType, FernetEngine, _get_key)
+CustomerPersonalInfo = \
+    _get_customer_personal_info(ct.EncryptedType, FernetEngine, _get_key)

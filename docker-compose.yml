@@ -1,35 +1,38 @@
 version: '3.4'
 
 services:
-  db:
+  backend:
+    depends_on:
+      - db
+      - db_isolated
     build:
       context: .
-      target: dellstore
-    restart: always
+      target: backend
     ports:
-      - 5432:5432
+      - 80:5000
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./:/app:cached
+
+  db:
+    image: postgres
+    restart: always
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
-    secrets:
-      - db_password
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - db_data:/var/lib/postgresql/data
 
   db_isolated:
-    build:
-      context: .
-      target: dellstore_isolated
+    image: postgres
     restart: always
-    ports:
-      - 3456:5432
     environment:
       POSTGRES_DB: ${ISOLATED_DB_NAME}
       POSTGRES_USER: ${ISOLATED_DB_USER}
-      POSTGRES_PASSWORD_FILE: /run/secrets/db_isolated_password
-    secrets:
-      - db_isolated_password
+      POSTGRES_PASSWORD: ${ISOLATED_DB_PASSWORD}
     volumes:
       - db_isolated_data:/var/lib/postgresql/data
 

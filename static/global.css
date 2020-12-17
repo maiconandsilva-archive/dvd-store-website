@@ -24,3 +24,12 @@ form, .form {
 .hidden {
 	display: none;
 }
+
+/* show contents only for selected tab */
+.tab {
+    display: none;
+}
+
+#personal-info {
+    display: block;
+}
